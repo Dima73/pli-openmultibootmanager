@@ -1,0 +1,15 @@
+- WARNING!!!
+- Maybe not loading you box if use OpenMultiBoot with the following connected devices: usb hub (power) / usb LCD display / usb tuners(DVB-T/C/S) / 3G modem and etc usb device
+- < device > has to be formated in ext4
+- < device > should be a fast usb-stick or ssd - not recommended to use a normal hdd as hdd would almost never stop spinning
+- **ubifs** - **kernel-module-nandsim**
+- **jffs2** - **kernel-module-nandsim kernel-module-block2mtd**
+- Upload any zipped image to < device >/open-multiboot-upload or /omb/open-multiboot-upload
+- Zipped image needs regular folderstructure like flashing from usb-device
+- It is not recommended to re-use existing settings - do not blame us if problems occur
+- Check your recording path configuration and existing timers if you attach a new device
+- Do not use Flash-Online if you have not booted your regularly flashed image - use delete/install in OpenMultiBoot of regularly flashed image
+- When using openPLi in flash and problems mounting apply the fix (this plugin --> press blue button --> set Fix mount devices (for PLi))
+- Special thx goes to skaman, kajgan, captain, arn354 and all testers!
+
+[![Play openMultiBoot YouTube](http://img.youtube.com/vi/WYOYCraLoMk/0.jpg)](https://www.youtube.com/watch?v=WYOYCraLoMk)

@@ -1,0 +1,266 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-15 17:16+0100\n"
+"PO-Revision-Date: 2016-09-07 20:37+0300\n"
+"Last-Translator: Dimitrij <Dima-73@inbox.lv>\n"
+"Language-Team: openPli dima-73@inbox.lv\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.9\n"
+
+msgid ""
+" to use openMultiboot\n"
+"Do you want install it?"
+msgstr ""
+" для использования openMultiboot.\n"
+"Вы хотите установить его сейчас?"
+
+msgid "(Folder is empty!) "
+msgstr "(Пустая папка!) "
+
+msgid "About"
+msgstr "Инфо"
+
+msgid ""
+"Warning!\n"
+"'/sbin/open_multiboot' not installed!"
+msgstr ""
+"Внимание!\n"
+"'/sbin/open_multiboot' не установлен!"
+
+msgid "Add zip archive with image in 'open-multiboot-upload'"
+msgstr "Добавить zip архив с имиджем в 'open-multiboot-upload'"
+
+msgid "Cannot create data folder"
+msgstr "Не удалось создать папку"
+
+msgid "Cannot create folder %s"
+msgstr "Не удалось создать папку %s"
+
+msgid "Cannot create kernel folder %s"
+msgstr "Не удалось создать папку ядра %s"
+
+msgid "Cannot create virtual MTD device"
+msgstr "Не удалось создать виртуальное MTD устройство"
+
+msgid "Cannot deflate image"
+msgstr "Не удалось распаковать имидж"
+
+msgid "Cannot extract nfi image"
+msgstr "Не удалось извлечь имидж nfi"
+
+msgid "Cannot format the device"
+msgstr "Не удалось форматировать устройство хранения"
+
+msgid "Cannot install "
+msgstr "Не удалось установить "
+
+msgid "Cannot remount the device"
+msgstr "Не удалось примонтировать устройство хранения"
+
+msgid "Cannot umount the device"
+msgstr "Не удалось отмонтировать устройство хранения"
+
+msgid "Choose the image to install"
+msgstr "Выберите имидж для установки..."
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Delete folder %s and all file"
+msgstr "Удалить папку %s со всеми файлами"
+
+msgid "Disable '/sbin/open_multiboot'"
+msgstr "Отключить '/sbin/open_multiboot'"
+
+msgid "Disable autoscan zip archive at mount device"
+msgstr "Откл. автосканирование zip архива при монтировании устройств"
+
+msgid "Do you really want add %s with image in 'open-multiboot-upload'?"
+msgstr ""
+"Вы действительно хотите добавить %s с имиджем в 'open-multiboot-upload'?"
+
+msgid "Do you want to delete %s?"
+msgstr "Вы действительно действительно удалить %s?"
+
+msgid "Do you want to reboot box now ?"
+msgstr "Вы хотите сделать перезагрузку ресивера сейчас?"
+
+msgid "Do you want to reboot now ?"
+msgstr "Вы хотите сделать перезагрузку сейчас?"
+
+msgid "Enable '/sbin/open_multiboot'"
+msgstr "Включить '/sbin/open_multiboot'"
+
+msgid "Enable autoscan zip archive at mount device"
+msgstr "Вкл. автосканирование zip архива при монтировании устройств"
+
+msgid "Error adding zip archive!"
+msgstr "Ошибка добавления zip архива!"
+
+msgid "Error removing zip archive!"
+msgstr "Ошибка удаления zip архива!"
+
+msgid "Error set new timeout!"
+msgstr "Ошибка при установке нового таймаута!"
+
+msgid "Extra setup"
+msgstr "Экстра настройки"
+
+msgid ""
+"Filesystem not supported\n"
+"Do you want format your drive?"
+msgstr ""
+"Файловая система не поддерживается,\n"
+"хотите отформатировать Ваше устройство хранения в ext4 (все данные будут "
+"потеряны)?"
+
+msgid "Fix mount devices (for PLi)"
+msgstr "Фикс монтирования устройств хранения (для PLi)"
+
+msgid "Flash image"
+msgstr "Flash имидж"
+
+msgid "Incorrect time!"
+msgstr "Неправильное время!"
+
+msgid "Install"
+msgstr "Установить"
+
+msgid "Multi boot loader for enigma2 box"
+msgstr "Мульти загрузчик для ресиверов на enigma2"
+
+msgid "Next boot: %s"
+msgstr "Следующая загрузка: %s"
+
+msgid "No suitable devices found"
+msgstr "Не найдены подходящие устройства хранения."
+
+msgid "Not found boxbranding.so!"
+msgstr "Не найден boxbranding.so!"
+
+msgid "OMB disabled."
+msgstr "OMB отключен."
+
+msgid "OMB enabled."
+msgstr "OMB включен."
+
+msgid "OpenMultiboot Manager"
+msgstr "менеджер openMultiboot"
+
+msgid "Please enter new name:"
+msgstr "Введите новое имя:"
+
+msgid "Please select the necessary option..."
+msgstr "Пожалуйста, выберите необходимое Вам действие..."
+
+msgid "Please upload an image inside %s"
+msgstr "Пожалуйста, загрузите нужный архив с имиджем (любое имя.zip) в %s"
+
+msgid "Please wait 40 seconds, while delete is in progress."
+msgstr "Пожалуйста, подождите 40 секунд, удаление в процессе."
+
+msgid "Please wait while format is in progress."
+msgstr "Пожалуйста подождите, пока форматирование в процессе."
+
+msgid "Please wait while installation is in progress."
+msgstr "Пожалуйста, подождите, пока идет процесс установки."
+
+msgid "Please wait while delete is in progress."
+msgstr "Пожалуйста, подождите, пока идет процесс удаления."
+
+msgid ""
+"Please wait while installation is in progress.\n"
+"This operation may take a while."
+msgstr ""
+"Пожалуйста, подождите, пока идет процесс установки.\n"
+"Эта операция может занять довольно долгое время."
+
+msgid "Press OK to next boot."
+msgstr "Нажмите OK для выбора следующей загрузки."
+
+msgid "Read error current dir, sorry."
+msgstr "Извините, ошибка чтения текущей директории."
+
+msgid "Readme"
+msgstr "Readme (помощь)"
+
+msgid "Cannot create main folder %s"
+msgstr "Не удалось создать домашнюю папку %s"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Current Running Image:"
+msgstr "Текущий загруженный имидж:"
+
+msgid "Set new timeout (sec)"
+msgstr "Установите новый таймаут (сек.)"
+
+msgid "Set next boot to %s ?"
+msgstr "Установить следующую загрузку ресивера в %s ?"
+
+msgid "The folder %s already exist"
+msgstr "Папка %s уже существует"
+
+msgid "Timeout boot menu: next %d sec"
+msgstr "Таймаут меню загрузки: сейчас %d сек."
+
+msgid "Where do you want to install openMultiboot?"
+msgstr "Куда Вы хотите установить openMultiboot?"
+
+msgid "Open MultiBoot Menu"
+msgstr "Меню openMultiboot"
+
+msgid "Disable boot menu"
+msgstr "Отключить меню загрузки"
+
+msgid "Enable boot menu"
+msgstr "Включить меню загрузки"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "You need the module "
+msgstr "Вам необходим модуль "
+
+msgid "Your STB doesn't seem supported"
+msgstr "Ваш ресивер, кажется не поддерживается!"
+
+msgid "openMultiboot About"
+msgstr "Информация openMultiboot"
+
+msgid "Error unpacking rootfs"
+msgstr "Ошибка распаковки rootfs"
+
+msgid "Error copying kernel"
+msgstr "Ошибка копирования ядра"
+
+msgid "Error copying unpacked rootfs"
+msgstr "Ошибка копирования распакованого rootfs"
+
+msgid "openMultiboot Install"
+msgstr "Установить openMultiboot"
+
+msgid "openMultiboot Manager"
+msgstr "Менеджер openMultiboot"
+
+msgid "zip archive was successfully added to '%s' OMB!"
+msgstr "zip архив был успешно добавлен в '%s' OMB!"
+
+msgid "Generic error in unpaack process"
+msgstr "Общая ошибка в процессе распаковки"
+
+msgid "Alternative name image folder"
+msgstr "Альтернативное имя папки имиджа"
+
+msgid "Standard install"
+msgstr "Стандартная инсталляция"
+
+msgid "Use altenative folder"
+msgstr "Использовать альтернативную папку"
