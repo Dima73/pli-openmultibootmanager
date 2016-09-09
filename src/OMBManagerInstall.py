@@ -40,7 +40,6 @@ import glob
 import struct
 import fileinput
 
-
 try:
 	screenWidth = getDesktop(0).size().width()
 except:

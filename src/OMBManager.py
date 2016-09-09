@@ -22,12 +22,16 @@
 
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
+from Screens.Console import Console
 from OMBManagerList import OMBManagerList
 from OMBManagerCommon import OMB_MAIN_DIR, OMB_DATA_DIR, OMB_UPLOAD_DIR
 from OMBManagerInstall import OMB_GETIMAGEFILESYSTEM, OMB_UNJFFS2_BIN, BOX_MODEL, BOX_NAME, BRANDING
 from OMBManagerLocale import _
 from enigma import eTimer
 import os
+
+nandsim_alrenative_module = ['formuler1', 'formuler3', 'formuler4']
+loadScript = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/install-nandsim.sh"
 
 class OMBManagerInit:
 	def __init__(self, session):
@@ -149,9 +153,29 @@ class OMBManagerKernelModule:
 		self.timer.callback.append(self.afterInstall)
 		self.timer.start(100)
 
+	def alterInstallCallback(self, confirmed):
+		if confirmed:
+			os.system("chmod 755 %s" % loadScript)
+			cmd = "%s %s" % (loadScript, BOX_NAME)
+			text = _("Install")
+			self.session.openWithCallback(self.afterLoadInstall, Console, text, [cmd])
+
+	def afterLoadInstall(self):
+		if os.system('opkg list_installed | grep ' + self.kernel_module) != 0:
+			self.error_message = _('Cannot install ') + self.kernel_module
+			self.session.open(MessageBox, self.error_message, type = MessageBox.TYPE_ERROR)
+		else:
+			OMBManager(self.session)
+
 	def afterInstall(self):
 		self.timer.stop()
 		if len(self.error_message) > 0:
+			if self.kernel_module == 'kernel-module-nandsim' and nandsim_alrenative_module and BOX_NAME:
+				for name in nandsim_alrenative_module:
+					if BOX_NAME == name:
+						message = _("You want to install an alternative kernel-module-nandsim?\nLinux version may be different from the module!")
+						self.session.openWithCallback(self.alterInstallCallback, MessageBox, message, MessageBox.TYPE_YESNO)
+						return
 			self.session.open(MessageBox, self.error_message, type = MessageBox.TYPE_ERROR)
 		else:
 			OMBManager(self.session)

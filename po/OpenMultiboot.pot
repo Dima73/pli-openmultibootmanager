@@ -35,6 +35,10 @@ msgstr ""
 msgid "Alternative name image folder"
 msgstr ""
 
+msgid "Install '/sbin/open_multiboot"
+msgstr ""
+
+
 #: OMBManager.py:43
 msgid "Cancel"
 msgstr ""
@@ -353,4 +357,7 @@ msgstr ""
 #: plugin.py:60
 #, python-format
 msgid "zip archive was successfully added to '%s' OMB!"
+msgstr ""
+
+msgid "You want to install an alternative kernel-module-nandsim?\nLinux version may be different from the module!"
 msgstr ""
