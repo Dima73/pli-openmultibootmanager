@@ -474,6 +474,9 @@ class OMBManagerList(Screen):
 					os.system('rm ' + file_entry1)
 					self.refresh()
 				elif choice[1] == "enable":
+					if not self.checkMountFix():
+						self.session.open(MessageBox,_("Fix mount devices (for PLi)") + " !", MessageBox.TYPE_INFO)
+						return
 					if os.path.isfile('/sbin/open_multiboot'):
 						os.system('rm /sbin/init')
 						os.system('ln -sfn /sbin/open_multiboot /sbin/init')
