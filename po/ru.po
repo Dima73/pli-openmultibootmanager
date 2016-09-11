@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-15 17:16+0100\n"
-"PO-Revision-Date: 2016-09-09 21:35+0300\n"
+"PO-Revision-Date: 2016-09-11 20:50+0300\n"
 "Last-Translator: Dimitrij <Dima-73@inbox.lv>\n"
 "Language-Team: openPli dima-73@inbox.lv\n"
 "Language: ru\n"
@@ -265,6 +265,9 @@ msgstr "Использовать альтернативную папку"
 
 msgid "Install '/sbin/open_multiboot'"
 msgstr "Инсталлировать '/sbin/open_multiboot'"
+
+msgid "Install alternative '/sbin/open_multiboot'"
+msgstr "Инсталлировать альтернативный '/sbin/open_multiboot'"
 
 msgid ""
 "You want to install an alternative kernel-module-nandsim?\n"

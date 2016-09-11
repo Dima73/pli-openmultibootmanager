@@ -35,7 +35,7 @@ from Components.config import config, ConfigSubsection, ConfigText
 from Components.Input import Input
 from Screens.InputBox import InputBox
 from Components.config import config
-from OMBManagerInstall import OMBManagerInstall, OMB_RM_BIN, BRANDING, BOX_NAME, OMB_GETIMAGEFOLDER
+from OMBManagerInstall import OMBManagerInstall, OMB_RM_BIN, BRANDING, BOX_NAME, BOX_MODEL, OMB_GETIMAGEFOLDER
 from OMBManagerAbout import OMBManagerAbout
 from OMBManagerCommon import OMB_DATA_DIR, OMB_UPLOAD_DIR
 from Components.Label import Label
@@ -76,6 +76,8 @@ def ismultibootFile():
 	else:
 		return True
 	return False
+
+loadScript = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/install-nandsim.sh"
 
 class OMBManagerList(Screen):
 	if screenWidth >= 1920:
@@ -440,6 +442,8 @@ class OMBManagerList(Screen):
 					menu.append((_("Enable '/sbin/open_multiboot'"), "enable"))
 				else:
 					menu.append((_("Disable '/sbin/open_multiboot'"), "disable"))
+			else:
+				menu.append((_("Install '/sbin/open_multiboot'"), "multiboot"))
 			if os.path.isfile(self.data_dir + '/.bootmenu.lock'):
 				menu.append((_("Enable boot menu"), "bootenable"))
 			else:
@@ -447,6 +451,8 @@ class OMBManagerList(Screen):
 				current_value = self.isNextTimeout()
 				name_text = _("Timeout boot menu: next %d sec") % current_value
 				menu.append((name_text, "timeout"))
+			if BOX_MODEL == "formuler" and not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.open_multiboot_formuler'):
+				menu.append((_("Install alternative '/sbin/open_multiboot'"), "multiboot_formuler"))
 		if not self.checkMountFix():
 			menu.append((_("Fix mount devices (for PLi)"), "fix_mount"))
 		menu.append((_("Alternative name image folder") + ": %s" % config.plugins.omb.alternative_image_folder.value, "folder"))
@@ -499,6 +505,15 @@ class OMBManagerList(Screen):
 					self.setAutoScan(choice[1])
 				elif choice[1] == "timeout":
 					self.changeTimeout(current_value)
+				elif choice[1] == "multiboot_formuler":
+					os.system("chmod 755 %s" % loadScript)
+					cmd = "%s multiboot_formuler" % loadScript
+					text = _("Install")
+					self.session.open(Console, text, [cmd])
+				elif choice[1] == "multiboot":
+					cmd = "opkg install --force-reinstall openmultiboot"
+					text = _("Install")
+					self.session.open(Console, text, [cmd])
 				elif choice[1] == "folder":
 					self.session.openWithCallback(self.renameFolderCallback, VirtualKeyBoard, title = _("Please enter new name:"), text=config.plugins.omb.alternative_image_folder.value)
 		dlg = self.session.openWithCallback(extraAction, ChoiceBox, title=text, list=menu)

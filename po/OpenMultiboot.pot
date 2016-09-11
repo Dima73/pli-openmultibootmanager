@@ -35,7 +35,7 @@ msgstr ""
 msgid "Alternative name image folder"
 msgstr ""
 
-msgid "Install '/sbin/open_multiboot"
+msgid "Install '/sbin/open_multiboot'"
 msgstr ""
 
 
@@ -361,3 +361,7 @@ msgstr ""
 
 msgid "You want to install an alternative kernel-module-nandsim?\nLinux version may be different from the module!"
 msgstr ""
+
+msgid "Install alternative '/sbin/open_multiboot'"
+msgstr ""
+
