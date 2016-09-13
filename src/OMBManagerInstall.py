@@ -317,7 +317,7 @@ class OMBManagerInstall(Screen):
 
 	def showError(self, error_message):
 		self.messagebox.close()
-		self.error_message = error_message;
+		self.error_message = error_message
 		self.error_timer.start(100)
 
 	def guessIdentifierName(self, selected_image):
@@ -377,12 +377,21 @@ class OMBManagerInstall(Screen):
 		if nfifile:
 			if not self.extractImageNFI(nfifile[0], tmp_folder):
 				self.showError(_("Cannot extract nfi image"))
+				os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
 				return
-		if self.installImage(tmp_folder, target_folder, kernel_target_file, tmp_folder):
+			else:
+				self.afterInstallImage(target_folder)
+				os.system(OMB_RM_BIN + ' -f ' + source_file)
+				os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+				self.messagebox.close()
+				self.close(target_folder)
+		elif self.installImage(tmp_folder, target_folder, kernel_target_file, tmp_folder):
 			os.system(OMB_RM_BIN + ' -f ' + source_file)
+			os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
 			self.messagebox.close()
 			self.close(target_folder)
-		os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+		else:
+			os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
 
 	def installImage(self, src_path, dst_path, kernel_dst_path, tmp_folder):
 		if "ubi" in OMB_GETIMAGEFILESYSTEM:
@@ -572,7 +581,6 @@ class OMBManagerInstall(Screen):
 			part = part + 1
 		nfidata.close()
 		print '[OMB] Extracting %s to %s Finished!' % (nfifile, extractdir)
-		self.afterInstallImage(dst_path)
 		return True
 
 	def afterInstallImage(self, dst_path=""):

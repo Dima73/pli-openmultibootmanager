@@ -444,6 +444,8 @@ class OMBManagerList(Screen):
 					menu.append((_("Disable '/sbin/open_multiboot'"), "disable"))
 			else:
 				menu.append((_("Install '/sbin/open_multiboot'"), "multiboot"))
+				if os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.open_multiboot_formuler'):
+					os.system('rm /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.open_multiboot_formuler')
 			if os.path.isfile(self.data_dir + '/.bootmenu.lock'):
 				menu.append((_("Enable boot menu"), "bootenable"))
 			else:
