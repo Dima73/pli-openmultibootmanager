@@ -29,6 +29,9 @@ msgstr "Инфо"
 msgid "Cancel"
 msgstr "Выйти"
 
+msgid "Exit"
+msgstr "Выxод"
+
 msgid ""
 "Warning!\n"
 "'/sbin/open_multiboot' not installed!"
