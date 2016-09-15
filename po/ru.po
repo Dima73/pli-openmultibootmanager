@@ -26,6 +26,9 @@ msgstr "(Пустая папка!) "
 msgid "About"
 msgstr "Инфо"
 
+msgid "Cancel"
+msgstr "Выйти"
+
 msgid ""
 "Warning!\n"
 "'/sbin/open_multiboot' not installed!"
