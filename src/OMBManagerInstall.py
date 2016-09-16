@@ -375,6 +375,9 @@ class OMBManagerInstall(Screen):
 			return
 		nfifile = glob.glob('%s/*.nfi' % tmp_folder)
 		if nfifile:
+			if BOX_MODEL == "dreambox":
+				self.showError(_("Your STB doesn\'t seem supported"))
+				return
 			if not self.extractImageNFI(nfifile[0], tmp_folder):
 				self.showError(_("Cannot extract nfi image"))
 				os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
@@ -585,7 +588,6 @@ class OMBManagerInstall(Screen):
 
 	def afterInstallImage(self, dst_path=""):
 		if not os.path.exists(dst_path + "/sbin"):
-			self.showError(_("Generic error in unpaack process"))
 			return 
 		if not os.path.exists('/usr/lib/python2.7/boxbranding.so') and os.path.exists('/usr/lib/enigma2/python/boxbranding.so'):
 			os.system("ln -s /usr/lib/enigma2/python/boxbranding.so /usr/lib/python2.7/boxbranding.so")
