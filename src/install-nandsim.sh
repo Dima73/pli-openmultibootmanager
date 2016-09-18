@@ -91,9 +91,37 @@ case $1 in
 		fi
 		exit 0
 	;;
+	dmm_nfidump)
+		SRC="https://raw.githubusercontent.com/Dima73/pli-openmultibootmanager/master/src/bin/mips/dmm_nfidump/nfidump"
+		DEST=/tmp/nfidump
+		if which curl >/dev/null 2>&1 ; then
+			curl -o $DEST $SRC
+		else
+			echo >&2 "install-nfidump: cannot find curl"
+			opkg update && opkg install curl
+			if which curl >/dev/null 2>&1 ; then
+				curl -o $DEST $SRC
+			fi
+		fi
+		if ! [ -f $DEST ] ; then
+			echo >&2 "install-nfidump: download failed"
+			exit 1
+		else
+			chmod 755 /tmp/nfidump
+			SIZE="$(du -k "/tmp/nfidump" | awk '{ print $1 }')"
+			if [ $SIZE -gt 130 ] ; then 
+				echo >&2 "install-nfidump: download failed not bin file"
+				exit 1
+			else
+				mv /tmp/nfidump /usr/bin/nfidump
+				echo >&2 "install-nfidump: download done"
+			fi
+		fi
+		exit 0
+	;;
 	*)
 		echo " "
-		echo "Options: $0 {formuler1|formuler3|formuler4|multiboot_formuler}"
+		echo "Options: $0 {formuler1|formuler3|formuler4|multiboot_formuler|dmm_nfidump}"
 		echo " "
 esac
 

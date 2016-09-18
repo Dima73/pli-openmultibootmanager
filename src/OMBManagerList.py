@@ -234,7 +234,7 @@ class OMBManagerList(Screen):
 				count = 0
 				for d in os.listdir(self.data_dir + '/' + file_entry):
 					count += 1
-				if not count:
+				if not count or count < 6:
 					title = _('(Folder is empty!) ') + title
 				else:
 					self.checkBackupVerification(self.data_dir + '/' + file_entry)

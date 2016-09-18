@@ -179,6 +179,8 @@ elif BRANDING and WORKAROUND:
 			OMB_GETIMAGEFILESYSTEM = "jffs2.nfi"
 		elif BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
 			OMB_GETIMAGEFILESYSTEM = "ubi.nfi"
+		else:
+			OMB_GETIMAGEFILESYSTEM = ""
 else:
 	f = open("/proc/mounts","r")
 	for line in f:
@@ -210,6 +212,7 @@ OMB_LOSETUP_BIN = '/sbin/losetup'
 OMB_ECHO_BIN = '/bin/echo'
 OMB_MKNOD_BIN = '/bin/mknod'
 OMB_UNJFFS2_BIN = '/usr/bin/unjffs2'
+OMB_NFIDUMP_BIN = '/usr/bin/nfidump'
 
 class OMBManagerInstall(Screen):
 	if screenWidth >= 1920:
@@ -375,19 +378,36 @@ class OMBManagerInstall(Screen):
 			return
 		nfifile = glob.glob('%s/*.nfi' % tmp_folder)
 		if nfifile:
-			if BOX_MODEL == "dreambox":
+			if BOX_MODEL != "dreambox":
 				self.showError(_("Your STB doesn\'t seem supported"))
 				return
-			if not self.extractImageNFI(nfifile[0], tmp_folder):
-				self.showError(_("Cannot extract nfi image"))
-				os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
-				return
+			if BOX_NAME == "dm500hd" or BOX_NAME == "dm800" or BOX_NAME == "dm800se":
+				os.system(OMB_NFIDUMP_BIN + ' --squashfskeep ' + nfifile[0] + ' ' + target_folder)
+				if not os.path.exists(target_folder + "/usr/bin/enigma2"):
+					self.showError(_("Cannot extract nfi image"))
+					os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+				else:
+					self.afterInstallImage(target_folder)
+					os.system(OMB_RM_BIN + ' -f ' + source_file)
+					os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+					self.messagebox.close()
+					self.close(target_folder)
+			elif BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
+				if not self.extractImageNFI(nfifile[0], tmp_folder):
+					self.showError(_("Cannot extract nfi image"))
+					os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+				else:
+					if not os.path.exists(target_folder + "/usr/bin/enigma2"):
+						self.showError(_("Cannot extract nfi image"))
+						os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+					else:
+						self.afterInstallImage(target_folder)
+						os.system(OMB_RM_BIN + ' -f ' + source_file)
+						os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+						self.messagebox.close()
+						self.close(target_folder)
 			else:
-				self.afterInstallImage(target_folder)
-				os.system(OMB_RM_BIN + ' -f ' + source_file)
-				os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
-				self.messagebox.close()
-				self.close(target_folder)
+				self.showError(_("Your STB doesn\'t seem supported"))
 		elif self.installImage(tmp_folder, target_folder, kernel_target_file, tmp_folder):
 			os.system(OMB_RM_BIN + ' -f ' + source_file)
 			os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
@@ -418,6 +438,9 @@ class OMBManagerInstall(Screen):
 			if os.system(OMB_CP_BIN + ' ' + kernel_path + ' ' + kernel_dst_path) != 0:
 				self.showError(_("Error copying kernel"))
 				return False
+		else:
+			self.showError(_("Error unpacking rootfs"))
+			return False
 		return True
 
 	def installImageJFFS2(self, src_path, dst_path, kernel_dst_path, tmp_folder):
