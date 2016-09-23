@@ -234,8 +234,12 @@ class OMBManagerList(Screen):
 				count = 0
 				for d in os.listdir(self.data_dir + '/' + file_entry):
 					count += 1
-				if not count or count < 6:
+				if not count:
 					title = _('(Folder is empty!) ') + title
+				elif count < 6:
+					title = _('(Unpack error!) ') + title
+				elif not os.path.exists(self.data_dir + '/' + file_entry + '/usr/bin/enigma2'):
+					title = _('(Unpack error!) ') + title
 				else:
 					self.checkBackupVerification(self.data_dir + '/' + file_entry)
 				self.images_list.append(title)
@@ -317,6 +321,8 @@ class OMBManagerList(Screen):
 		if len(self.images_entries) > 1:
 			self.select = self["list"].getIndex()
 			name = self["list"].getCurrent()
+			if name.startswith(_("(Folder")) or name.startswith(_("(Unpack")):
+				return
 			status = self.checkStatusOMB()
 			self.session.openWithCallback(self.confirmNextbootCB, MessageBox,_('Set next boot to %s ?') % name + "\n" + status, MessageBox.TYPE_YESNO)
 
@@ -555,6 +561,8 @@ class OMBManagerList(Screen):
 			return
 		self.renameIndex = self["list"].getIndex()
 		name = self["list"].getCurrent()
+		if name.startswith(_("(Folder")) or name.startswith(_("(Unpack")):
+			return
 		if self["list"].getIndex() == 0:
 			if name.endswith('(Flash)'):
 				name = name[:-8]

@@ -365,3 +365,5 @@ msgstr ""
 msgid "Install alternative '/sbin/open_multiboot'"
 msgstr ""
 
+msgid "(Unpack error!) "
+msgstr ""
