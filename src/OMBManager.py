@@ -40,7 +40,7 @@ class OMBManagerInit:
 		message = _("Where do you want to install openMultiboot?")
 		disks_list = []
 		for p in harddiskmanager.getMountedPartitions():
-			if p and os.path.exists(p.mountpoint) and os.access(p.mountpoint, os.F_OK|os.R_OK) and p.device and p.mountpoint != '/' and (p.device[:2] == 'sd' or p.device == 'mmcblk0p1') and isMounted(p.mountpoint):
+			if p and os.path.exists(p.mountpoint) and os.access(p.mountpoint, os.F_OK|os.R_OK) and p.device and p.mountpoint != '/' and (p.device[:2] == 'sd' or (p.device.startswith('mmcblk0p') and BOX_NAME not in ("solo4k", "hd51", "hd52"))) and isMounted(p.mountpoint):
 				disks_list.append((p.description + ' (%s)' % p.mountpoint, p))
 
 		if len(disks_list) > 0:
