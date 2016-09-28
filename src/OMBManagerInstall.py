@@ -30,7 +30,6 @@ from Components.Button import Button
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
 from Screens.ChoiceBox import ChoiceBox
-from Components.About import about
 from Components.config import config
 from OMBManagerCommon import OMB_MAIN_DIR, OMB_DATA_DIR, OMB_UPLOAD_DIR, OMB_TMP_DIR
 from OMBManagerLocale import _
@@ -441,6 +440,7 @@ class OMBManagerInstall(Screen):
 		else:
 			self.showError(_("Error unpacking rootfs"))
 			return False
+		self.afterInstallImage(dst_path)
 		return True
 
 	def installImageJFFS2(self, src_path, dst_path, kernel_dst_path, tmp_folder):
