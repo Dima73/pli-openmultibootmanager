@@ -70,12 +70,10 @@ if fileExists("/proc/stb/info/boxtype"):
 				BOX_MODEL = "formuler"
 		elif BOX_NAME.startswith('hd'):
 			BOX_MODEL = "mutant"
-		elif BOX_NAME.startswith('osmini'):
+		elif BOX_NAME.startswith('osm'):
 			BOX_MODEL = "edision"
 		elif BOX_NAME.startswith('g300') or BOX_NAME.startswith('7000S'):
 			BOX_MODEL = "miraclebox"
-		elif BOX_NAME.startswith('osmini'):
-			BOX_MODEL = "edision"
 		elif BOX_NAME == 'sh1' or BOX_NAME == 'h3' or BOX_NAME == 'h5' or BOX_NAME == 'lc' or BOX_NAME == 'i55':
 			BOX_MODEL = "zgemma"
 	except:
