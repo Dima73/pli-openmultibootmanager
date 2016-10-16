@@ -45,7 +45,7 @@ except:
 	screenWidth = 720
 
 try:
-	device_name = boxHardwareInfo().get_device_name()
+	device_name = HardwareInfo().get_device_name()
 except:
 	device_name = None
 
