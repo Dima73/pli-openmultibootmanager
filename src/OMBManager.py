@@ -85,7 +85,7 @@ class OMBManagerInit:
 			self.messagebox = self.session.open(MessageBox, _('Please wait while format is in progress.'), type = MessageBox.TYPE_INFO, enable_input=False)
 			self.timer = eTimer()
 			self.timer.callback.append(self.doFormatDevice)
-			self.timer.start(100)
+			self.timer.start(100, True)
 
 	def doFormatDevice(self):
 		self.timer.stop()
@@ -101,7 +101,7 @@ class OMBManagerInit:
 		self.messagebox.close()
 		self.timer = eTimer()
 		self.timer.callback.append(self.afterFormat)
-		self.timer.start(100)
+		self.timer.start(100, True)
 
 	def afterFormat(self):
 		self.timer.stop()
@@ -126,7 +126,7 @@ class OMBManagerKernelModule:
 		if branding:
 			self.timer = eTimer()
 			self.timer.callback.append(self.warningMessage)
-			self.timer.start(500)
+			self.timer.start(500, True)
 			return
 		message = _("You need the module ") + self.kernel_module + _(" to use openMultiboot\nDo you want install it?")
 		self.session.openWithCallback(self.installCallback, MessageBox, message, MessageBox.TYPE_YESNO)
@@ -141,7 +141,7 @@ class OMBManagerKernelModule:
 				self.messagebox = self.session.open(MessageBox,_('Please wait while installation is in progress.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.timer = eTimer()
 			self.timer.callback.append(self.installModule)
-			self.timer.start(100)
+			self.timer.start(100, True)
 
 	def installModule(self):
 		self.timer.stop()
@@ -159,7 +159,7 @@ class OMBManagerKernelModule:
 		self.messagebox.close()
 		self.timer = eTimer()
 		self.timer.callback.append(self.afterInstall)
-		self.timer.start(100)
+		self.timer.start(100, True)
 
 	def afterLoadNfidumpInstall(self):
 		if not os.path.exists(OMB_NFIDUMP_BIN):
