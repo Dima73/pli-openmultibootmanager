@@ -209,7 +209,7 @@ OMB_LOSETUP_BIN = '/sbin/losetup'
 OMB_ECHO_BIN = '/bin/echo'
 OMB_MKNOD_BIN = '/bin/mknod'
 OMB_UNJFFS2_BIN = '/usr/bin/unjffs2'
-OMB_NFIDUMP_BIN = '/usr/bin/nfidump'
+OMB_NFIDUMP_BIN = '/usr/sbin/nfidump'
 
 class OMBManagerInstall(Screen):
 	if screenWidth >= 1920:
@@ -378,18 +378,19 @@ class OMBManagerInstall(Screen):
 			if BOX_MODEL != "dreambox":
 				self.showError(_("Your STB doesn\'t seem supported"))
 				return
-			if BOX_NAME == "dm500hd" or BOX_NAME == "dm800" or BOX_NAME == "dm800se":
-				os.system(OMB_NFIDUMP_BIN + ' --squashfskeep ' + nfifile[0] + ' ' + target_folder)
-				if not os.path.exists(target_folder + "/usr/bin/enigma2"):
-					self.showError(_("Cannot extract nfi image"))
-					os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
-				else:
-					self.afterInstallImage(target_folder)
-					os.system(OMB_RM_BIN + ' -f ' + source_file)
-					os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
-					self.messagebox.close()
-					self.close(target_folder)
-			elif BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
+			if BOX_NAME == "dm800" or BOX_NAME == "dm500hd" or BOX_NAME == "dm800se" or BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
+				if os.path.exists(OMB_NFIDUMP_BIN): # When use nfidump
+					os.system(OMB_NFIDUMP_BIN + ' -s ' + nfifile[0] + ' ' + target_folder)
+					if not os.path.exists(target_folder + "/usr/bin/enigma2"):
+						self.showError(_("Cannot extract nfi image"))
+						os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+					else:
+						self.afterInstallImage(target_folder)
+						os.system(OMB_RM_BIN + ' -f ' + source_file)
+						os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+						self.messagebox.close()
+						self.close(target_folder)
+					return
 				if not self.extractImageNFI(nfifile[0], tmp_folder):
 					self.showError(_("Cannot extract nfi image"))
 					os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
@@ -503,8 +504,11 @@ class OMBManagerInstall(Screen):
 		if OMB_GETMACHINEBUILD in ('inihdp'):
 			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/ubi_reader/ubi_extract_files.py"):
 				ubifile = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/ubi_reader/ubi_extract_files.py"
-			else:
+			elif fileExists("/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/ubi_reader/ubi_extract_files.pyo"):
 				ubifile = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/ubi_reader/ubi_extract_files.pyo"
+			else:
+				self.showError(_("Your STB doesn\'t seem supported"))
+				return False
 			cmd= "chmod 755 " + ubifile
 			rc = os.system(cmd)
 			cmd = "python " + ubifile + " " + rootfs_path + " -o " + ubi_path

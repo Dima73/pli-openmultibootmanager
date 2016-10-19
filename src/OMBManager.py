@@ -208,15 +208,15 @@ def OMBManager(session, **kwargs):
 	if "tar.bz2" in OMB_GETIMAGEFILESYSTEM:
 		kernel_module = None
 
-
 	if BOX_MODEL == "dreambox":
-		if BOX_NAME == "dm500hd" or BOX_NAME == "dm800" or BOX_NAME == "dm800se":
-			kernel_module = None
-			if not os.path.exists(OMB_NFIDUMP_BIN):
-				OMBManagerKernelModule(session, "nfidump")
-				return
-		elif BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
-			kernel_module = None
+		kernel_module = None
+
+	# When use nfidump
+	#if BOX_MODEL == "dreambox":
+	#	if BOX_NAME == "dm500hd" or BOX_NAME == "dm800" or BOX_NAME == "dm800se" or BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
+	#		if not os.path.exists(OMB_NFIDUMP_BIN):
+	#			OMBManagerKernelModule(session, "nfidump")
+	#			return
 
 	if not BRANDING:
 		OMBManagerKernelModule(session, kernel_module, branding=True)

@@ -113,7 +113,7 @@ case $1 in
 				echo >&2 "install-nfidump: download failed not bin file"
 				exit 1
 			else
-				mv /tmp/nfidump /usr/bin/nfidump
+				mv /tmp/nfidump /usr/sbin/nfidump
 				echo >&2 "install-nfidump: download done"
 			fi
 		fi
