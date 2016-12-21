@@ -66,7 +66,7 @@ if fileExists("/proc/stb/info/boxtype"):
 		elif BOX_NAME.startswith('spycat'):
 			BOX_MODEL = "spycat"
 		elif BOX_NAME.startswith('formuler'):
-			if BOX_NAME == "formuler1" or BOX_NAME == "formuler3" or BOX_NAME == "formuler4":
+			if BOX_NAME == "formuler1" or BOX_NAME == "formuler3" or BOX_NAME == "formuler4" or BOX_NAME == "formuler4turbo":
 				BOX_MODEL = "formuler"
 		elif BOX_NAME.startswith('hd'):
 			BOX_MODEL = "mutant"
@@ -142,7 +142,7 @@ elif BRANDING and WORKAROUND:
 		OMB_GETMACHINEKERNELFILE = "kernel_cfe_auto.bin"
 		if BOX_NAME == "solo2" or BOX_NAME == "duo2" or BOX_NAME == "solose" or BOX_NAME == "zero":
 			OMB_GETMACHINEROOTFILE = "root_cfe_auto.bin"
-		elif BOX_NAME == "solo4k":
+		elif BOX_NAME == "solo4k" or BOX_NAME == "uno4k" or BOX_NAME == "ultimo4k":
 			OMB_GETMACHINEKERNELFILE = "kernel_auto.bin"
 			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
