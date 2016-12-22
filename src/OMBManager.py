@@ -30,7 +30,7 @@ from OMBManagerLocale import _
 from enigma import eTimer
 import os
 
-nandsim_alrenative_module = ['formuler1', 'formuler3', 'formuler4']
+nandsim_alrenative_module = [] #['formuler1', 'formuler3', 'formuler4']
 loadScript = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/install-nandsim.sh"
 
 class OMBManagerInit:
