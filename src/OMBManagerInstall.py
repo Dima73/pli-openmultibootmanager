@@ -49,7 +49,7 @@ try:
 except:
 	device_name = None
 
-BOX_MODEL = "none"
+BOX_MODEL = ""
 BOX_NAME = ""
 if fileExists("/proc/stb/info/boxtype"):
 	try:
@@ -66,7 +66,6 @@ if fileExists("/proc/stb/info/boxtype"):
 		elif BOX_NAME.startswith('spycat'):
 			BOX_MODEL = "spycat"
 		elif BOX_NAME.startswith('formuler'):
-			if BOX_NAME == "formuler1" or BOX_NAME == "formuler3" or BOX_NAME == "formuler4" or BOX_NAME == "formuler4turbo":
 				BOX_MODEL = "formuler"
 		elif BOX_NAME.startswith('hd'):
 			BOX_MODEL = "mutant"
@@ -89,9 +88,10 @@ elif fileExists("/proc/stb/info/vumodel"):
 		pass
 elif fileExists("/proc/stb/info/hwmodel"):
 	try:
-		f = open("/proc/stb/info/hwmodel")
-		BOX_NAME = f.read().strip()
-		f.close()
+		l = open("/proc/stb/info/hwmodel")
+		model = l.read()
+		BOX_NAME = str(model.lower().strip())
+		l.close()
 	except:
 		pass
 	if BOX_NAME.startswith('fusion') or BOX_NAME.startswith("purehd"):
@@ -113,7 +113,7 @@ try:
 	BRANDING = True
 except ImportError:
 	try:
-		if BOX_MODEL != "none":
+		if BOX_MODEL:
 			from enigma import getBoxType
 			box = getBoxType()
 			BRANDING = True
@@ -122,6 +122,13 @@ except ImportError:
 			BRANDING = False
 	except:
 		BRANDING = False
+
+if box and not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type'):
+	os.system("echo %s > /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type" % box)
+elif BOX_NAME and not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type'):
+	os.system("echo %s > /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type" % BOX_NAME)
+if BOX_MODEL and not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.brand_oem'):
+	os.system("echo %s > /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.brand_oem" % BOX_MODEL)
 
 OMB_GETMACHINEBUILD = str(box)
 OMB_GETIMAGEFILESYSTEM = "ubi"

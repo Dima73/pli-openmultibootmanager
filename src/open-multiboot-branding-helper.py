@@ -76,8 +76,18 @@ else:
 					except:
 						print "undefined"
 				elif sys.argv[2] == 'image_version':
-					print ' '
+					print " "
+				elif sys.argv[2] == 'brand_oem':
+					try:
+						print open(sys.argv[1].replace("/usr/lib/enigma2/python","")+"/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.brand_oem").readline().strip()
+					except:
+						print " "
+				elif sys.argv[2] == 'box_type':
+					try:
+						print open(sys.argv[1].replace("/usr/lib/enigma2/python","")+"/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type").readline().strip()
+					except:
+						print " "
 				else:
-					pass
+					print "opps"
 			else:
 				print eval(KEYS_FNC_MAP[sys.argv[2]])
