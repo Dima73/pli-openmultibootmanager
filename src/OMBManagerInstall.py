@@ -66,7 +66,7 @@ if fileExists("/proc/stb/info/boxtype"):
 		elif BOX_NAME.startswith('spycat'):
 			BOX_MODEL = "spycat"
 		elif BOX_NAME.startswith('formuler'):
-				BOX_MODEL = "formuler"
+			BOX_MODEL = "formuler"
 		elif BOX_NAME.startswith('hd'):
 			BOX_MODEL = "mutant"
 		elif BOX_NAME.startswith('osm'):
