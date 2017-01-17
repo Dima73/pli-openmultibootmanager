@@ -369,12 +369,17 @@ class OMBManagerList(Screen):
 	def checkBackupVerification(self, base_path):
 		sbin_path = base_path + '/sbin'
 		if os.path.exists(sbin_path):
+			etc_path = base_path + '/etc'
 			if os.path.isfile(sbin_path + '/open_multiboot'):
-				os.system('rm -f' + sbin_path + '/open_multiboot')
-				os.system('rm -f' + sbin_path + '/init')
+				os.system('rm -rf ' + sbin_path + '/open_multiboot')
+				os.system('rm -rf ' + sbin_path + '/init')
 				os.system('ln -s ' + sbin_path + '/init.sysvinit ' + sbin_path + '/init')
 			if os.path.isfile(sbin_path + '/open-multiboot-branding-helper.py'):
-				os.system('rm -f' + sbin_path + '/open-multiboot-branding-helper.py')
+				os.system('rm -rf ' + sbin_path + '/open-multiboot-branding-helper.py')
+			if BOX_NAME and not os.path.exists(etc_path + '/.box_type'):
+				os.system("echo %s > %s/.box_type" % (BOX_NAME, etc_path))
+			if BOX_MODEL and not os.path.exists(etc_path + '/.brand_oem'):
+				os.system("echo %s > %s/.brand_oem" % (BOX_MODEL, etc_path))
 			os.system('cp /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/open-multiboot-branding-helper.py ' + sbin_path + '/open-multiboot-branding-helper.py')
 
 	def checkflashImage(self):
@@ -481,7 +486,7 @@ class OMBManagerList(Screen):
 				elif choice[1] == "disable":
 					os.system('rm /sbin/init')
 					os.system('ln -s /sbin/init.sysvinit /sbin/init')
-					os.system('rm /sbin/open-multiboot-branding-helper.py')
+					os.system('rm -rf /sbin/open-multiboot-branding-helper.py')
 					file_entry = self.data_dir + '/.nextboot'
 					file_entry1 = self.data_dir + '/.selected'
 					os.system('rm ' + file_entry)

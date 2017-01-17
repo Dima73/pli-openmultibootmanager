@@ -79,12 +79,12 @@ else:
 					print " "
 				elif sys.argv[2] == 'brand_oem':
 					try:
-						print open(sys.argv[1].replace("/usr/lib/enigma2/python","")+"/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.brand_oem").readline().strip()
+						print open(sys.argv[1].replace("/usr/lib/enigma2/python","")+"/etc/.brand_oem").readline().strip()
 					except:
 						print " "
 				elif sys.argv[2] == 'box_type':
 					try:
-						print open(sys.argv[1].replace("/usr/lib/enigma2/python","")+"/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type").readline().strip()
+						print open(sys.argv[1].replace("/usr/lib/enigma2/python","")+"/etc/.box_type").readline().strip()
 					except:
 						print " "
 				else:

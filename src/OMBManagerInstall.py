@@ -123,12 +123,10 @@ except ImportError:
 	except:
 		BRANDING = False
 
-if box and not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type'):
-	os.system("echo %s > /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type" % box)
-elif BOX_NAME and not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type'):
-	os.system("echo %s > /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.box_type" % BOX_NAME)
-if BOX_MODEL and not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.brand_oem'):
-	os.system("echo %s > /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.brand_oem" % BOX_MODEL)
+if BOX_NAME and not os.path.exists('/etc/.box_type'):
+	os.system("echo %s > /etc/.box_type" % BOX_NAME)
+if BOX_MODEL and not os.path.exists('/etc/.brand_oem'):
+	os.system("echo %s > /etc/.brand_oem" % BOX_MODEL)
 
 OMB_GETMACHINEBUILD = str(box)
 OMB_GETIMAGEFILESYSTEM = "ubi"
