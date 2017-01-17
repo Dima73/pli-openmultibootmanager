@@ -35,7 +35,7 @@ from Components.config import config, ConfigSubsection, ConfigText
 from Components.Input import Input
 from Screens.InputBox import InputBox
 from Components.config import config
-from OMBManagerInstall import OMBManagerInstall, OMB_RM_BIN, BRANDING, BOX_NAME, BOX_MODEL, OMB_GETIMAGEFOLDER
+from OMBManagerInstall import OMBManagerInstall, OMB_RM_BIN, BRANDING, BOX_NAME, BOX_MODEL, OMB_GETIMAGEFOLDER, box
 from OMBManagerAbout import OMBManagerAbout
 from OMBManagerCommon import OMB_DATA_DIR, OMB_UPLOAD_DIR
 from Components.Label import Label
@@ -377,7 +377,10 @@ class OMBManagerList(Screen):
 			if os.path.isfile(sbin_path + '/open-multiboot-branding-helper.py'):
 				os.system('rm -rf ' + sbin_path + '/open-multiboot-branding-helper.py')
 			if BOX_NAME and not os.path.exists(etc_path + '/.box_type'):
-				os.system("echo %s > %s/.box_type" % (BOX_NAME, etc_path))
+				if box and box != BOX_NAME:
+					os.system("echo %s > %s/.box_type" % (box, etc_path))
+				else: 
+					os.system("echo %s > %s/.box_type" % (BOX_NAME, etc_path))
 			if BOX_MODEL and not os.path.exists(etc_path + '/.brand_oem'):
 				os.system("echo %s > %s/.brand_oem" % (BOX_MODEL, etc_path))
 			os.system('cp /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/open-multiboot-branding-helper.py ' + sbin_path + '/open-multiboot-branding-helper.py')

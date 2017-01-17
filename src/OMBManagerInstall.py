@@ -124,7 +124,10 @@ except ImportError:
 		BRANDING = False
 
 if BOX_NAME and not os.path.exists('/etc/.box_type'):
-	os.system("echo %s > /etc/.box_type" % BOX_NAME)
+	if box and box != BOX_NAME:
+		os.system("echo %s > /etc/.box_type" % box)
+	else: 
+		os.system("echo %s > /etc/.box_type" % BOX_NAME)
 if BOX_MODEL and not os.path.exists('/etc/.brand_oem'):
 	os.system("echo %s > /etc/.brand_oem" % BOX_MODEL)
 
