@@ -59,22 +59,24 @@ if fileExists("/proc/stb/info/boxtype"):
 		l.close()
 		if BOX_NAME.startswith('et'):
 			BOX_MODEL = "xtrend"
-		elif BOX_NAME.startswith('xpeedc'):
-			BOX_MODEL = "golden interstar"
+			if BOX_NAME.startswith('et7') and BOX_NAME.endswith('mini'):
+				BOX_MODEL = "ultramini"
+		elif BOX_NAME.startswith('xpeed'):
+			BOX_MODEL = "ultramini"
 		elif BOX_NAME.startswith('xp'):
-			BOX_MODEL = "maxdigital"
+			BOX_MODEL = "xp"
 		elif BOX_NAME.startswith('spycat'):
 			BOX_MODEL = "spycat"
 		elif BOX_NAME.startswith('formuler'):
 			BOX_MODEL = "formuler"
 		elif BOX_NAME.startswith('hd'):
-			BOX_MODEL = "mutant"
+			BOX_MODEL = "gfutures"
 		elif BOX_NAME.startswith('osm'):
-			BOX_MODEL = "edision"
+			BOX_MODEL = "xcore"
 		elif BOX_NAME.startswith('g300') or BOX_NAME.startswith('7000S'):
-			BOX_MODEL = "miraclebox"
-		elif BOX_NAME == 'sh1' or BOX_NAME == 'h3' or BOX_NAME == 'h5' or BOX_NAME == 'lc' or BOX_NAME == 'i55':
-			BOX_MODEL = "zgemma"
+			BOX_MODEL = "ini"
+		elif BOX_NAME == 'sh1' or BOX_NAME == 'h3' or BOX_NAME == 'h4' or BOX_NAME == 'h5' or BOX_NAME == 'lc' or BOX_NAME == 'i55':
+			BOX_MODEL = "airdigital"
 	except:
 		pass
 elif fileExists("/proc/stb/info/vumodel"):
