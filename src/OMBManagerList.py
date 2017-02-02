@@ -217,6 +217,8 @@ class OMBManagerList(Screen):
 					continue
 				if file_entry[0] == '.':
 					continue
+				if not self.isCompatible(self.data_dir + '/' + file_entry):
+					continue
 				if os.path.exists(self.data_dir + '/.label_' + file_entry):
 					title = self.imageTitleFromLabel('.label_' + file_entry)
 				else:
@@ -377,13 +379,31 @@ class OMBManagerList(Screen):
 			if os.path.isfile(sbin_path + '/open-multiboot-branding-helper.py'):
 				os.system('rm -rf ' + sbin_path + '/open-multiboot-branding-helper.py')
 			if BOX_NAME and not os.path.exists(etc_path + '/.box_type'):
-				if box and box != BOX_NAME:
-					os.system("echo %s > %s/.box_type" % (box, etc_path))
-				else: 
-					os.system("echo %s > %s/.box_type" % (BOX_NAME, etc_path))
+				box_name = BOX_NAME
+				if BOX_MODEL == "vuplus" and BOX_NAME and BOX_NAME[0:2] != "vu":
+					box_name = "vu" + BOX_NAME
+				os.system("echo %s > %s/.box_type" % (box_name, etc_path))
 			if BOX_MODEL and not os.path.exists(etc_path + '/.brand_oem'):
 				os.system("echo %s > %s/.brand_oem" % (BOX_MODEL, etc_path))
 			os.system('cp /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/open-multiboot-branding-helper.py ' + sbin_path + '/open-multiboot-branding-helper.py')
+			if self.checkflashImage() and not os.path.exists('/usr/lib/enigma2/python/boxbranding.so') and os.path.exists(base_path + '/usr/lib/enigma2/python/boxbranding.so'):
+				if self.isCompatible(base_path):
+					os.system("cp " + base_path + "/usr/lib/enigma2/python/boxbranding.so " "/usr/lib/enigma2/python/boxbranding.so")
+
+	def isCompatible(self, base_path=''):
+		box_name = BOX_NAME
+		if BOX_MODEL == "vuplus" and BOX_NAME and BOX_NAME[0:2] != "vu":
+			box_name = "vu" + BOX_NAME
+		try:
+			archconffile = "%s/etc/opkg/arch.conf" % base_path
+			with open(archconffile, "r") as arch:
+				for line in arch:
+					box_type = line.split()[1]
+					if box_name == box_type:
+						return True
+		except:
+			return False
+		return False
 
 	def checkflashImage(self):
 		if '/omb/open-multiboot' in self.data_dir and os.path.ismount('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot'):
@@ -391,6 +411,8 @@ class OMBManagerList(Screen):
 		return True
 
 	def checkMountFix(self):
+		if not os.path.exists('/etc/init.d/volatile-media.sh'):
+			return True
 		fix = False
 		try:
 			f = open('/etc/init.d/volatile-media.sh', 'r')
@@ -469,9 +491,9 @@ class OMBManagerList(Screen):
 				menu.append((name_text, "timeout"))
 			#if BOX_MODEL == "formuler" and not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.open_multiboot_formuler'):
 			#	menu.append((_("Install alternative '/sbin/open_multiboot'"), "multiboot_formuler"))
+			menu.append((_("Alternative name image folder") + ": %s" % config.plugins.omb.alternative_image_folder.value, "folder"))
 		if not self.checkMountFix():
 			menu.append((_("Fix mount devices (for PLi)"), "fix_mount"))
-		menu.append((_("Alternative name image folder") + ": %s" % config.plugins.omb.alternative_image_folder.value, "folder"))
 		def extraAction(choice):
 			if choice:
 				if choice[1] == "readme":
@@ -627,6 +649,8 @@ class OMBManagerList(Screen):
 		if self.checktimer.isActive():
 			return
 		if not BRANDING:
+			return
+		if not self.checkflashImage():
 			return
 		upload_list = []
 		if os.path.exists(self.upload_dir):

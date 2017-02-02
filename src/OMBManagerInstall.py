@@ -126,10 +126,10 @@ except ImportError:
 		BRANDING = False
 
 if BOX_NAME and not os.path.exists('/etc/.box_type'):
-	if box and box != BOX_NAME:
-		os.system("echo %s > /etc/.box_type" % box)
-	else: 
-		os.system("echo %s > /etc/.box_type" % BOX_NAME)
+	box_name = BOX_NAME
+	if BOX_MODEL == "vuplus" and BOX_NAME and BOX_NAME[0:2] != "vu":
+ 		box_name = "vu" + BOX_NAME
+	os.system("echo %s > /etc/.box_type" % box_name)
 if BOX_MODEL and not os.path.exists('/etc/.brand_oem'):
 	os.system("echo %s > /etc/.brand_oem" % BOX_MODEL)
 
@@ -191,14 +191,14 @@ elif BRANDING and WORKAROUND:
 else:
 	f = open("/proc/mounts","r")
 	for line in f:
-		if line.find("rootfs")>-1:
-			if line.find("ubi")>-1:
+		if line.find("rootfs") > -1:
+			if line.find("ubi") > -1:
 				OMB_GETIMAGEFILESYSTEM = "ubi"
 				break
-			if line.find("tar.bz2")>-1:
+			if line.find("tar.bz2") > -1:
 				OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 				break
-			if line.find("jffs2")>-1:
+			if line.find("jffs2") > -1:
 				OMB_GETIMAGEFILESYSTEM = "jffs2"
 				break
 	f.close()
@@ -623,7 +623,7 @@ class OMBManagerInstall(Screen):
 
 	def afterInstallImage(self, dst_path=""):
 		if not os.path.exists(dst_path + "/sbin"):
-			return 
+			return
 		if not os.path.exists('/usr/lib/python2.7/boxbranding.so') and os.path.exists('/usr/lib/enigma2/python/boxbranding.so'):
 			os.system("ln -s /usr/lib/enigma2/python/boxbranding.so /usr/lib/python2.7/boxbranding.so")
 		if os.path.exists(dst_path + '/usr/lib/python2.7/boxbranding.py') and os.path.exists('/usr/lib/enigma2/python/boxbranding.so'):
