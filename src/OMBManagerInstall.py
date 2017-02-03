@@ -186,6 +186,13 @@ elif BRANDING and WORKAROUND:
 			OMB_GETIMAGEFILESYSTEM = "jffs2.nfi"
 		elif BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
 			OMB_GETIMAGEFILESYSTEM = "ubi.nfi"
+		elif BOX_NAME == "dm900":
+			OMB_GETMACHINEKERNELFILE = "kernel.bin"
+			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
+			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
+			OMB_GETIMAGEFOLDER = "dm900"
+		elif BOX_NAME == "dm520" or BOX_NAME == "dm525" or BOX_NAME == "dm820" or BOX_NAME == "dm7080":
+			OMB_GETIMAGEFILESYSTEM = "tar.xz"
 		else:
 			OMB_GETIMAGEFILESYSTEM = ""
 else:
@@ -200,6 +207,9 @@ else:
 				break
 			if line.find("jffs2") > -1:
 				OMB_GETIMAGEFILESYSTEM = "jffs2"
+				break
+			if line.find("tar.xz") > -1:
+				OMB_GETIMAGEFILESYSTEM = "tar.xz"
 				break
 	f.close()
 
@@ -384,6 +394,7 @@ class OMBManagerInstall(Screen):
 			self.showError(_("Cannot deflate image"))
 			return
 		nfifile = glob.glob('%s/*.nfi' % tmp_folder)
+		tarxzfile = glob.glob('%s/*.rootfs.tar.xz' % tmp_folder)
 		if nfifile:
 			if BOX_MODEL != "dreambox":
 				self.showError(_("Your STB doesn\'t seem supported"))
@@ -416,6 +427,20 @@ class OMBManagerInstall(Screen):
 						self.close(target_folder)
 			else:
 				self.showError(_("Your STB doesn\'t seem supported"))
+		if tarxzfile:
+			if os.system(OMB_TAR_BIN + ' xpJf %s -C %s' % (tarxzfile[0], target_folder)) != 0:
+				if not os.path.exists(target_folder + "/usr/bin/enigma2"):
+					self.showError(_("Error unpacking rootfs"))
+					os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+				else:
+					self.afterInstallImage(target_folder)
+					os.system(OMB_RM_BIN + ' -f ' + source_file)
+					os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
+					self.messagebox.close()
+					self.close(target_folder)
+			else:
+				self.showError(_("Error unpacking rootfs"))
+				os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)
 		elif self.installImage(tmp_folder, target_folder, kernel_target_file, tmp_folder):
 			os.system(OMB_RM_BIN + ' -f ' + source_file)
 			os.system(OMB_RM_BIN + ' -rf ' + tmp_folder)

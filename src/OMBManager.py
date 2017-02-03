@@ -197,33 +197,33 @@ class OMBManagerKernelModule:
 
 def OMBManager(session, **kwargs):
 	found = False
+	omb_image = os.path.ismount('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot')
 
-	kernel_module = 'kernel-module-nandsim'
-	if "jffs2" in OMB_GETIMAGEFILESYSTEM and BOX_MODEL != "dreambox":
-		if os.path.exists(OMB_UNJFFS2_BIN):
+	if not omb_image:
+		kernel_module = 'kernel-module-nandsim'
+		if "jffs2" in OMB_GETIMAGEFILESYSTEM and BOX_MODEL != "dreambox":
+			if os.path.exists(OMB_UNJFFS2_BIN):
+				kernel_module = None
+			else:
+				kernel_module = 'kernel-module-block2mtd'
+
+		if "tar.bz2" in OMB_GETIMAGEFILESYSTEM:
 			kernel_module = None
-		else:
-			kernel_module = 'kernel-module-block2mtd'
 
-	if "tar.bz2" in OMB_GETIMAGEFILESYSTEM:
-		kernel_module = None
+		# When use nfidump
+		if BOX_MODEL == "dreambox":
+			kernel_module = None
+			if BOX_NAME == "dm500hd" or BOX_NAME == "dm800" or BOX_NAME == "dm800se" or BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
+				if not os.path.exists(OMB_NFIDUMP_BIN):
+					OMBManagerKernelModule(session, "nfidump")
+					return
 
-	if BOX_MODEL == "dreambox":
-		kernel_module = None
+		if not BRANDING:
+			OMBManagerKernelModule(session, kernel_module, branding=True)
 
-	# When use nfidump
-	#if BOX_MODEL == "dreambox":
-	#	if BOX_NAME == "dm500hd" or BOX_NAME == "dm800" or BOX_NAME == "dm800se" or BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
-	#		if not os.path.exists(OMB_NFIDUMP_BIN):
-	#			OMBManagerKernelModule(session, "nfidump")
-	#			return
-
-	if not BRANDING:
-		OMBManagerKernelModule(session, kernel_module, branding=True)
-
-	if kernel_module and os.system('opkg list_installed | grep ' + kernel_module) != 0 and BRANDING:
-		OMBManagerKernelModule(session, kernel_module)
-		return
+		if kernel_module and os.system('opkg list_installed | grep ' + kernel_module) != 0 and BRANDING:
+			OMBManagerKernelModule(session, kernel_module)
+			return
 
 	data_dir = OMB_MAIN_DIR + '/' + OMB_DATA_DIR
 	if os.path.exists(data_dir):
@@ -242,7 +242,7 @@ def OMBManager(session, **kwargs):
 					found = True
 					break
 	if not found:
-		if not os.path.ismount('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot'):
+		if not omb_image:
 			OMBManagerInit(session)
 
 def isMounted(device):

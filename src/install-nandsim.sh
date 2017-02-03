@@ -92,8 +92,8 @@ case $1 in
 		exit 0
 	;;
 	dmm_nfidump)
-		SRC="https://raw.githubusercontent.com/Dima73/pli-openmultibootmanager/master/src/bin/mips/dmm_nfidump/nfidump"
-		DEST=/tmp/nfidump
+		SRC="https://raw.githubusercontent.com/Dima73/pli-openmultibootmanager/master/src/bin/mips/dmm_nfidump/nfidump_1.0_all.ipk"
+		DEST=/tmp/nfidump_1.0_all.ipk
 		if which curl >/dev/null 2>&1 ; then
 			curl -o $DEST $SRC
 		else
@@ -107,15 +107,7 @@ case $1 in
 			echo >&2 "install-nfidump: download failed"
 			exit 1
 		else
-			chmod 755 /tmp/nfidump
-			SIZE="$(du -k "/tmp/nfidump" | awk '{ print $1 }')"
-			if [ $SIZE -gt 130 ] ; then 
-				echo >&2 "install-nfidump: download failed not bin file"
-				exit 1
-			else
-				mv /tmp/nfidump /usr/sbin/nfidump
-				echo >&2 "install-nfidump: download done"
-			fi
+			opkg install /tmp/nfidump_1.0_all.ipk
 		fi
 		exit 0
 	;;
