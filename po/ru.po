@@ -284,3 +284,6 @@ msgstr ""
 
 msgid "(Unpack error!) "
 msgstr "(Ошибка распаковки!) "
+
+msgid "For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s"
+msgstr "Для этого ресивера необходим только первый раздел мультизагрузочного имиджа для использования 'openMultiboot'!\nТекущий раздел мультизагрузочного имиджа - %s"

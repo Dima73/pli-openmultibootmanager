@@ -71,6 +71,10 @@ if fileExists("/proc/stb/info/boxtype"):
 			BOX_MODEL = "formuler"
 		elif BOX_NAME.startswith('hd'):
 			BOX_MODEL = "gfutures"
+		elif BOX_NAME.startswith('vs'):
+			BOX_MODEL = "gfutures"
+		elif BOX_NAME.startswith('bre2ze4k'):
+			BOX_MODEL = "gfutures"
 		elif BOX_NAME.startswith('osm'):
 			BOX_MODEL = "xcore"
 		elif BOX_NAME.startswith('g300') or BOX_NAME.startswith('7000S'):
@@ -145,6 +149,11 @@ if BRANDING and not WORKAROUND:
 	OMB_GETMACHINEKERNELFILE = getMachineKernelFile()
 	OMB_GETMACHINEROOTFILE = getMachineRootFile()
 	OMB_GETMACHINEBUILD = getMachineBuild()
+	if 'hd-emmc' in OMB_GETIMAGEFILESYSTEM:
+		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k":
+			OMB_GETMACHINEKERNELFILE = "kernel1.bin"
+			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
+			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 elif BRANDING and WORKAROUND:
 	OMB_GETIMAGEFOLDER = BOX_NAME
 	if BOX_MODEL == "vuplus":
@@ -172,13 +181,20 @@ elif BRANDING and WORKAROUND:
 			OMB_GETIMAGEFOLDER = "et5x00"
 		elif BOX_NAME.startswith("et6"):
 			OMB_GETIMAGEFOLDER = "et6x00"
+		elif BOX_NAME.startswith("et11"):
+			OMB_GETIMAGEFOLDER = "et1x000"
+			OMB_GETMACHINEKERNELFILE = "kernel.bin"
+			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
+			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 		if BOX_NAME.startswith('g300'):
 			OMB_GETIMAGEFOLDER = "miraclebox/" + 'twinplus'
 		elif BOX_NAME.startswith('7000S'):
 			OMB_GETIMAGEFOLDER = "miraclebox/" + 'micro'
-	elif BOX_MODEL == "mutant":
-		if BOX_NAME == "hd51":
-			OMB_GETIMAGEFILESYSTEM = "disk.img"
+	elif BOX_MODEL == "gfutures":
+		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k":
+			OMB_GETMACHINEKERNELFILE = "kernel1.bin"
+			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
+			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 	elif BOX_MODEL == "zgemma":
 		OMB_GETIMAGEFOLDER = "zgemma/" + BOX_NAME
 	elif BOX_MODEL == "dreambox":
@@ -464,6 +480,9 @@ class OMBManagerInstall(Screen):
 		base_path = src_path + '/' + (self.alt_install and config.plugins.omb.alternative_image_folder.value or OMB_GETIMAGEFOLDER)
 		rootfs_path = base_path + '/' + OMB_GETMACHINEROOTFILE
 		kernel_path = base_path + '/' + OMB_GETMACHINEKERNELFILE
+		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k":
+			if OMB_GETMACHINEKERNELFILE == "kernel1.bin" and not os.path.exists(kernel_path):
+				kernel_path = base_path + '/' + "kernel.bin"
 		if os.system(OMB_TAR_BIN + ' jxf %s -C %s' % (rootfs_path,dst_path)) != 0:
 			self.showError(_("Error unpacking rootfs"))
 			return False

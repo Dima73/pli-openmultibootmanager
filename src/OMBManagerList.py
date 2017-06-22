@@ -386,9 +386,13 @@ class OMBManagerList(Screen):
 			if BOX_MODEL and not os.path.exists(etc_path + '/.brand_oem'):
 				os.system("echo %s > %s/.brand_oem" % (BOX_MODEL, etc_path))
 			os.system('cp /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/open-multiboot-branding-helper.py ' + sbin_path + '/open-multiboot-branding-helper.py')
-			if self.checkflashImage() and not os.path.exists('/usr/lib/enigma2/python/boxbranding.so') and os.path.exists(base_path + '/usr/lib/enigma2/python/boxbranding.so'):
-				if self.isCompatible(base_path):
-					os.system("cp " + base_path + "/usr/lib/enigma2/python/boxbranding.so " "/usr/lib/enigma2/python/boxbranding.so")
+			if self.checkflashImage():
+				if not os.path.exists('/usr/lib/enigma2/python/boxbranding.so') and os.path.exists(base_path + '/usr/lib/enigma2/python/boxbranding.so'):
+					if self.isCompatible(base_path):
+						os.system("cp " + base_path + "/usr/lib/enigma2/python/boxbranding.so " "/usr/lib/enigma2/python/boxbranding.so")
+				if os.path.exists('/usr/lib/enigma2/python/boxbranding.so') and not os.path.exists(base_path + '/usr/lib/enigma2/python/boxbranding.so'):
+					if self.isCompatible(base_path):
+						os.system("cp /usr/lib/enigma2/python/boxbranding.so " + base_path + "/usr/lib/enigma2/python/boxbranding.so")
 
 	def isCompatible(self, base_path=''):
 		box_name = BOX_NAME
@@ -466,6 +470,18 @@ class OMBManagerList(Screen):
 		text = _("Please select the necessary option...")
 		menu = [(_("Readme"), "readme")]
 		if self.checkflashImage():
+			if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k":
+				mount_part = os.popen("readlink /dev/root").read()
+				if 'mmcblk0p3' not in mount_part:
+					mount_text = "n/a"
+					if 'mmcblk0p5' in mount_text:
+						mount_text = "2"
+					elif 'mmcblk0p7' in mount_text:
+						mount_text = "3"
+					elif 'mmcblk0p9' in mount_text:
+						mount_text = "4"
+					self.session.open(MessageBox,_("For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s") % mount_text, MessageBox.TYPE_INFO)
+					return
 			if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.autoscan'):
 				menu.append((_("Enable autoscan zip archive at mount device"), "enablescan"))
 			else:
