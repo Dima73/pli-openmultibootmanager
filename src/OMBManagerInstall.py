@@ -79,7 +79,7 @@ if fileExists("/proc/stb/info/boxtype"):
 			BOX_MODEL = "xcore"
 		elif BOX_NAME.startswith('g300') or BOX_NAME.startswith('7000S'):
 			BOX_MODEL = "ini"
-		elif BOX_NAME == 'sh1' or BOX_NAME == 'h3' or BOX_NAME == 'h4' or BOX_NAME == 'h5' or BOX_NAME == 'lc' or BOX_NAME == 'i55':
+		elif BOX_NAME == 'sh1' or BOX_NAME == 'h3' or BOX_NAME == 'h4' or BOX_NAME == 'h5' or BOX_NAME == 'lc' or BOX_NAME == 'i55' or BOX_NAME == 'h7':
 			BOX_MODEL = "airdigital"
 	except:
 		pass
@@ -161,7 +161,7 @@ elif BRANDING and WORKAROUND:
 		OMB_GETMACHINEKERNELFILE = "kernel_cfe_auto.bin"
 		if BOX_NAME == "solo2" or BOX_NAME == "duo2" or BOX_NAME == "solose" or BOX_NAME == "zero":
 			OMB_GETMACHINEROOTFILE = "root_cfe_auto.bin"
-		elif BOX_NAME == "solo4k" or BOX_NAME == "uno4k" or BOX_NAME == "ultimo4k":
+		elif BOX_NAME == "solo4k" or BOX_NAME == "uno4k"  or BOX_NAME == "uno4kse" or BOX_NAME == "ultimo4k":
 			OMB_GETMACHINEKERNELFILE = "kernel_auto.bin"
 			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
@@ -186,6 +186,11 @@ elif BRANDING and WORKAROUND:
 			OMB_GETMACHINEKERNELFILE = "kernel.bin"
 			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
+		elif BOX_NAME.startswith("et13"):
+			OMB_GETIMAGEFOLDER = "et13000"
+			OMB_GETMACHINEKERNELFILE = "kernel.bin"
+			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
+			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 		if BOX_NAME.startswith('g300'):
 			OMB_GETIMAGEFOLDER = "miraclebox/" + 'twinplus'
 		elif BOX_NAME.startswith('7000S'):
@@ -197,6 +202,10 @@ elif BRANDING and WORKAROUND:
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 	elif BOX_MODEL == "zgemma":
 		OMB_GETIMAGEFOLDER = "zgemma/" + BOX_NAME
+		if BOX_NAME == "h7":
+			OMB_GETMACHINEKERNELFILE = "kernel.bin"
+			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
+			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 	elif BOX_MODEL == "dreambox":
 		if BOX_NAME == "dm500hd" or BOX_NAME == "dm800" or BOX_NAME == "dm800se":
 			OMB_GETIMAGEFILESYSTEM = "jffs2.nfi"
@@ -207,6 +216,11 @@ elif BRANDING and WORKAROUND:
 			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 			OMB_GETIMAGEFOLDER = "dm900"
+		elif BOX_NAME == "dm920":
+			OMB_GETMACHINEKERNELFILE = "kernel.bin"
+			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
+			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
+			OMB_GETIMAGEFOLDER = "dm920"
 		elif BOX_NAME == "dm520" or BOX_NAME == "dm525" or BOX_NAME == "dm820" or BOX_NAME == "dm7080":
 			OMB_GETIMAGEFILESYSTEM = "tar.xz"
 		else:
