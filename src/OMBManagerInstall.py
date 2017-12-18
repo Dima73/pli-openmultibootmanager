@@ -161,7 +161,7 @@ elif BRANDING and WORKAROUND:
 		OMB_GETMACHINEKERNELFILE = "kernel_cfe_auto.bin"
 		if BOX_NAME == "solo2" or BOX_NAME == "duo2" or BOX_NAME == "solose" or BOX_NAME == "zero":
 			OMB_GETMACHINEROOTFILE = "root_cfe_auto.bin"
-		elif BOX_NAME == "solo4k" or BOX_NAME == "uno4k"  or BOX_NAME == "uno4kse" or BOX_NAME == "ultimo4k":
+		elif BOX_NAME == "solo4k" or BOX_NAME == "uno4k" or BOX_NAME == "uno4kse" or BOX_NAME == "ultimo4k" or BOX_NAME == "vuzero4k":
 			OMB_GETMACHINEKERNELFILE = "kernel_auto.bin"
 			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
