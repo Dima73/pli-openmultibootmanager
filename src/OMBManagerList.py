@@ -402,8 +402,7 @@ class OMBManagerList(Screen):
 			archconffile = "%s/etc/opkg/arch.conf" % base_path
 			with open(archconffile, "r") as arch:
 				for line in arch:
-					box_type = line.split()[1]
-					if box_name == box_type:
+					if box_name in line:
 						return True
 		except:
 			return False
