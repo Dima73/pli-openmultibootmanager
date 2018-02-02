@@ -398,6 +398,8 @@ class OMBManagerList(Screen):
 		box_name = BOX_NAME
 		if BOX_MODEL == "vuplus" and BOX_NAME and BOX_NAME[0:2] != "vu":
 			box_name = "vu" + BOX_NAME
+		if box_name == "et11000":
+			box_name = "et1"
 		try:
 			archconffile = "%s/etc/opkg/arch.conf" % base_path
 			with open(archconffile, "r") as arch:
