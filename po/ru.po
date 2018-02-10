@@ -164,7 +164,7 @@ msgid "Please select the necessary option..."
 msgstr "Пожалуйста, выберите необходимое Вам действие..."
 
 msgid "Please upload an image inside %s"
-msgstr "Пожалуйста, загрузите нужный архив с имиджем (любое имя.zip) в %s"
+msgstr "Пожалуйста, загрузите нужный архив с имиджем (любое имя без пробелов.zip) в %s"
 
 msgid "Please wait 40 seconds, while delete is in progress."
 msgstr "Пожалуйста, подождите 40 секунд, удаление в процессе."
