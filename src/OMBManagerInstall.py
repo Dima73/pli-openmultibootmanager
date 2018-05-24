@@ -51,7 +51,7 @@ except:
 
 BOX_MODEL = ""
 BOX_NAME = ""
-if fileExists("/proc/stb/info/boxtype"):
+if fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/hwmodel"):
 	try:
 		l = open("/proc/stb/info/boxtype")
 		model = l.read()
@@ -83,7 +83,7 @@ if fileExists("/proc/stb/info/boxtype"):
 			BOX_MODEL = "airdigital"
 	except:
 		pass
-elif fileExists("/proc/stb/info/vumodel"):
+elif fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/hwmodel"):
 	try:
 		l = open("/proc/stb/info/vumodel")
 		model = l.read()
@@ -150,8 +150,10 @@ if BRANDING and not WORKAROUND:
 	OMB_GETMACHINEROOTFILE = getMachineRootFile()
 	OMB_GETMACHINEBUILD = getMachineBuild()
 	if 'hd-emmc' in OMB_GETIMAGEFILESYSTEM:
-		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k":
+		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k" or BOX_NAME == "lunix3-4k":
 			OMB_GETMACHINEKERNELFILE = "kernel1.bin"
+			if BOX_NAME == "lunix3-4k":
+				OMB_GETMACHINEKERNELFILE = "oe_kernel.bin"
 			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 elif BRANDING and WORKAROUND:
@@ -167,11 +169,15 @@ elif BRANDING and WORKAROUND:
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 		else:
 			OMB_GETMACHINEROOTFILE = "root_cfe_auto.jffs2"
-
 	elif BOX_MODEL == "xsarius":
 		OMB_GETIMAGEFOLDER = "update/" + BOX_NAME + "/cfe"
 		OMB_GETMACHINEKERNELFILE = "oe_kernel.bin"
 		OMB_GETMACHINEROOTFILE = "oe_rootfs.bin"
+	elif BOX_NAME == "lunix3-4k":
+		OMB_GETIMAGEFOLDER = "update/" + BOX_NAME
+		OMB_GETMACHINEKERNELFILE = "oe_kernel.bin"
+		OMB_GETIMAGEFILESYSTEM = "tar.bz2"
+		OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 	elif BOX_MODEL == "xtrend":
 		if BOX_NAME.startswith("et7"):
 			OMB_GETIMAGEFOLDER = "et7x00"
