@@ -51,7 +51,16 @@ except:
 
 BOX_MODEL = ""
 BOX_NAME = ""
-if fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/hwmodel"):
+if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/hwmodel") and not fileExists("/proc/stb/info/boxtype"):
+	try:
+		l = open("/proc/stb/info/vumodel")
+		model = l.read()
+		BOX_NAME = str(model.lower().strip())
+		l.close()
+		BOX_MODEL = "vuplus"
+	except:
+		pass
+elif fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/hwmodel"):
 	try:
 		l = open("/proc/stb/info/boxtype")
 		model = l.read()
@@ -83,15 +92,6 @@ if fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/hwmod
 			BOX_MODEL = "airdigital"
 	except:
 		pass
-elif fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/hwmodel"):
-	try:
-		l = open("/proc/stb/info/vumodel")
-		model = l.read()
-		BOX_NAME = str(model.lower().strip())
-		l.close()
-		BOX_MODEL = "vuplus"
-	except:
-		pass
 elif fileExists("/proc/stb/info/hwmodel"):
 	try:
 		l = open("/proc/stb/info/hwmodel")
@@ -102,13 +102,14 @@ elif fileExists("/proc/stb/info/hwmodel"):
 		pass
 	if BOX_NAME.startswith('fusion') or BOX_NAME.startswith("purehd"):
 		BOX_MODEL = "xsarius"
-elif device_name and device_name.startswith('dm') and fileExists("/proc/stb/info/model"):
+elif fileExists("/proc/stb/info/model") and not fileExists("/proc/stb/info/hwmodel"):
 	try:
 		l = open("/proc/stb/info/model")
 		model = l.read()
 		BOX_NAME = str(model.lower().strip())
 		l.close()
-		BOX_MODEL = "dreambox"
+		if BOX_NAME.startswith('dm'):
+			BOX_MODEL = "dreambox"
 	except:
 		pass
 
