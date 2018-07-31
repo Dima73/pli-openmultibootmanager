@@ -7,18 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-07 20:49+0300\n"
-"PO-Revision-Date: 2018-05-24 19:55+0200\n"
+"POT-Creation-Date: 2018-07-31 12:48+0200\n"
+"PO-Revision-Date: 2018-07-31 12:53+0200\n"
+"Last-Translator: Pr2\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.7\n"
-"Last-Translator: Pr2\n"
+"X-Generator: Poedit 2.1.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Language: fr\n"
 
-#: OMBManager.py:127
 msgid ""
 " to use openMultiboot\n"
 "Do you want install it?"
@@ -26,162 +25,129 @@ msgstr ""
 " pour utiliser openMultiboot\n"
 "Voulez-vous l’installer?"
 
-#: OMBManagerList.py:236
+msgid "(Folder"
+msgstr "(Répertoire"
+
 msgid "(Folder is empty!) "
 msgstr "(le répertoire est vide!) "
 
-#: plugin.py:88
+msgid "(Unpack"
+msgstr "(Décompression"
+
+msgid "(Unpack error!) "
+msgstr "(Erreur de décompression!)"
+
 msgid "Add zip archive with image in 'open-multiboot-upload'"
 msgstr "Ajouter l’archive zip avec l’image dans ‘open-multiboot-upload’"
 
-#: OMBManagerList.py:452
 msgid "Alternative name image folder"
 msgstr "Nom alternatif du répertoire de l’image"
 
-msgid "Install '/sbin/open_multiboot'"
-msgstr "Installer ‘/sbin/open_multiboot’"
-
-#: OMBManager.py:43
 msgid "Cancel"
 msgstr "Annuler"
 
-#: OMBManager.py:71
 msgid "Cannot create data folder"
 msgstr "Impossible de créer un répertoire de donnée"
 
-#: OMBManagerInstall.py:361 OMBManagerInstall.py:371
 #, python-format
 msgid "Cannot create folder %s"
 msgstr "Impossible de créer le dossier %s"
 
-#: OMBManagerInstall.py:353
 #, python-format
 msgid "Cannot create kernel folder %s"
 msgstr "Impossible de créer le dossier noyau %s"
 
-#: OMBManagerInstall.py:346
 #, python-format
 msgid "Cannot create main folder %s"
 msgstr "Impossible de créer le dossier principal %s"
 
-#: OMBManagerInstall.py:491
 msgid "Cannot create virtual MTD device"
 msgstr "Impossible de créer le périphérique virtuel MTD"
 
-#: OMBManagerInstall.py:374
 msgid "Cannot deflate image"
 msgstr "Impossible de décompresser l’image"
 
-#: OMBManagerInstall.py:379
 msgid "Cannot extract nfi image"
 msgstr "Impossible d’extraire l’image nfi"
 
-#: OMBManager.py:93
 msgid "Cannot format the device"
 msgstr "Impossible de formater le périphérique"
 
-#: OMBManager.py:146
 msgid "Cannot install "
 msgstr "Impossible d’installer"
 
-#: OMBManager.py:96
 msgid "Cannot remount the device"
 msgstr "Impossible de monter à nouveau le périphérique"
 
-#: OMBManager.py:90
 msgid "Cannot umount the device"
 msgstr "Impossible de démonter le périphérique"
 
-#: OMBManagerInstall.py:253
 msgid "Choose the image to install"
 msgstr "Choisir l’image a installer"
 
-#: OMBManagerList.py:133
 msgid "Current Running Image:"
 msgstr "Image qui fonctionne actuellement:"
 
-#: OMBManagerInstall.py:256 OMBManagerList.py:308
 msgid "Delete"
 msgstr "Effacer"
 
-#: OMBManagerList.py:436
 #, python-format
 msgid "Delete folder %s and all file"
 msgstr "Effacer le répertoire %s et les fichiers"
 
-#: OMBManagerList.py:442
 msgid "Disable '/sbin/open_multiboot'"
 msgstr "Désactiver ‘/sbin/open_multiboot’"
 
-#: OMBManagerList.py:434
 msgid "Disable autoscan zip archive at mount device"
 msgstr "Désactiver l’autoscan de l’archive zip et monter le périphérique"
 
-#: OMBManagerList.py:446
 msgid "Disable boot menu"
 msgstr "Désactiver le menu de démarrage"
 
-#: plugin.py:36
 #, python-format
 msgid "Do you really want add %s with image in 'open-multiboot-upload'?"
-msgstr ""
-"Voulez-vous vraiment ajouter %s comme image dans ‘open-multiboot-upload’?"
+msgstr "Voulez-vous vraiment ajouter %s comme image dans ‘open-multiboot-upload’?"
 
-#: OMBManagerInstall.py:275 OMBManagerList.py:483 OMBManagerList.py:588
 #, python-format
 msgid "Do you want to delete %s?"
 msgstr "Voulez-vous effacer %s?"
 
-#: OMBManagerList.py:492
 msgid "Do you want to reboot box now ?"
 msgstr "Voulez-vous redémarrer le récepteur maintenant ?"
 
-#: OMBManagerList.py:330
 msgid "Do you want to reboot now ?"
 msgstr "Voulez-vous redémarrer maintenant ?"
 
-#: OMBManagerList.py:440
 msgid "Enable '/sbin/open_multiboot'"
 msgstr "Activer ‘/sbin/open_multiboot’"
 
-#: OMBManagerList.py:432
 msgid "Enable autoscan zip archive at mount device"
 msgstr "Activer l’autoscan de l’archive zip en montant le périphérique"
 
-#: OMBManagerList.py:444
 msgid "Enable boot menu"
 msgstr "Activer le menu de démarrage"
 
-#: plugin.py:62
 msgid "Error adding zip archive!"
 msgstr "Erreur en ajoutant l’archive zip!"
 
-#: OMBManagerInstall.py:407 OMBManagerInstall.py:431 OMBManagerInstall.py:446
-#: OMBManagerInstall.py:504
 msgid "Error copying kernel"
 msgstr "Erreur en copiant le noyau"
 
-#: OMBManagerInstall.py:428 OMBManagerInstall.py:443 OMBManagerInstall.py:501
 msgid "Error copying unpacked rootfs"
 msgstr "Erreur lors de la copie du rootfs décompressé"
 
-#: OMBManagerInstall.py:287
 msgid "Error removing zip archive!"
 msgstr "Erreur en effacant l’archive zip!"
 
-#: OMBManagerList.py:423
 msgid "Error set new timeout!"
 msgstr "Erreur définir un nouveau timeout!"
 
-#: OMBManagerInstall.py:403 OMBManagerInstall.py:424
 msgid "Error unpacking rootfs"
 msgstr "Erreur en décompressant le rootfs"
 
-#: OMBManagerInstall.py:255
 msgid "Exit"
 msgstr "Quitter"
 
-#: OMBManager.py:114
 msgid ""
 "Filesystem not supported\n"
 "Do you want format your drive?"
@@ -190,99 +156,85 @@ msgstr ""
 " \n"
 "Voulez vous formater votre disque?"
 
-#: OMBManagerList.py:451
 msgid "Fix mount devices (for PLi)"
 msgstr "Corriger le point de montage (pour PLi)"
 
-#: OMBManagerList.py:200
 msgid "Flash image"
 msgstr "Image de la mémoire flash"
 
-#: OMBManagerInstall.py:449 OMBManagerInstall.py:507 OMBManagerInstall.py:580
+#, python-format
+msgid ""
+"For this reciever need only first partition muliboot image for use 'openMultiboot'!\n"
+"Current partition muliboot image - %s"
+msgstr ""
+"Ce récepteur n’a besoin que de la première partition de l’image multiboot pour utiliser ‘openMultiboot’!\n"
+"Partition courante de l’image multiboot - %s"
+
 msgid "Generic error in unpaack process"
 msgstr "Erreur générique dans le processus de décompression"
 
-#: OMBManagerList.py:414
 msgid "Incorrect time!"
 msgstr "Heure incorrecte!"
 
-#: OMBManagerInstall.py:257 OMBManagerList.py:146
 msgid "Install"
 msgstr "Installer"
 
-#: OMBManagerList.py:144
+msgid "Install '/sbin/open_multiboot'"
+msgstr "Installer ‘/sbin/open_multiboot’"
+
 msgid "Menu"
 msgstr "Menu"
 
-#: plugin.py:93
 msgid "Multi boot loader for enigma2 box"
 msgstr "Chargeur Multi boot pour les récepteurs Enigma2"
 
-#: OMBManagerList.py:242
 #, python-format
 msgid "Next boot: %s"
 msgstr "Démarrage suivant: %s"
 
-#: OMBManager.py:46
 msgid "No suitable devices found"
 msgstr "Pas de périphérique approprié trouvé"
 
-#: OMBManager.py:132
 msgid "Not found boxbranding.so!"
 msgstr "Pas trouvé boxbranding.so!"
 
-#: OMBManagerList.py:346 OMBManagerList.py:348
 msgid "OMB disabled."
 msgstr "OMB désactivé."
 
-#: OMBManagerList.py:329 OMBManagerList.py:344 OMBManagerList.py:350
-#: OMBManagerList.py:491
 msgid "OMB enabled."
 msgstr "OMB activé."
 
-#: OMBManagerList.py:502
 msgid "Open MultiBoot Menu"
 msgstr "Menu Open MultiBoot"
 
-#: plugin.py:94
 msgid "Open Multiboot"
 msgstr "Open Multiboot"
 
-#: plugin.py:93
 msgid "OpenMultiboot"
 msgstr "OpenMultiboot"
 
-#: OMBManagerList.py:500 OMBManagerList.py:541
 msgid "Please enter new name:"
 msgstr "Merci d'entrer un nouveau nom:"
 
-#: OMBManagerInstall.py:290 OMBManagerList.py:428
 msgid "Please select the necessary option..."
 msgstr "Veuillez sélectionner l’option nécessaire..."
 
-#: OMBManagerList.py:606
 #, python-format
 msgid "Please upload an image inside %s"
 msgstr "S’il vous plaît télécharger une image dans %s"
 
-#: OMBManagerList.py:513
 msgid "Please wait 40 seconds, while delete is in progress."
-msgstr ""
-"Veuillez patienter 40 secondes, pendant que l’effacement est en cours."
+msgstr "Veuillez patienter 40 secondes, pendant que l’effacement est en cours."
 
-#: OMBManagerList.py:557
 msgid "Please wait while delete is in progress."
 msgstr "Merci de patienter pendant que l’effacement est en cours."
 
-#: OMBManager.py:81
 msgid "Please wait while format is in progress."
 msgstr "Merci de patienter pendant que le formatage est en cours."
 
-#: OMBManager.py:136
 msgid "Please wait while installation is in progress."
 msgstr "Merci de patienter pendant que l’installation est en cours."
 
-#: OMBManagerInstall.py:306
 msgid ""
 "Please wait while installation is in progress.\n"
 "This operation may take a while."
@@ -290,50 +242,39 @@ msgstr ""
 "Merci de patienter pendant que l’installation est en cours.\n"
 "Cette opération peut prendre un certain temps."
 
-#: OMBManagerList.py:241
 msgid "Press OK to next boot."
 msgstr "Appuyer sur OK pour le prochain démarrage."
 
-#: plugin.py:73
 msgid "Read error current dir, sorry."
 msgstr "Erreur de lecture sur le répertoire courant, désolé."
 
-#: OMBManagerList.py:429 OMBManagerList.py:456
 msgid "Readme"
 msgstr "Lisez moi"
 
-#: OMBManagerList.py:142
 msgid "Rename"
 msgstr "Renommer"
 
-#: OMBManagerList.py:408
 msgid "Set new timeout (sec)"
 msgstr "Définir un nouveau timeout (sec)"
 
-#: OMBManagerList.py:319
 #, python-format
 msgid "Set next boot to %s ?"
 msgstr "Définir le prochain démarrage sur %s ?"
 
-#: OMBManagerInstall.py:291
 msgid "Standard install"
 msgstr "Installation standard"
 
-#: OMBManagerInstall.py:356
 #, python-format
 msgid "The folder %s already exist"
 msgstr "Le répertoire %s existe déjà"
 
-#: OMBManagerList.py:448
 #, python-format
 msgid "Timeout boot menu: next %d sec"
 msgstr "Timeout du menu de démarrage: prochain %d sec"
 
-#: OMBManagerInstall.py:291
 msgid "Use altenative folder"
 msgstr "Utiliser un répertoire alternatif"
 
-#: OMBManagerList.py:168
 msgid ""
 "Warning!\n"
 "'/sbin/open_multiboot' not installed!"
@@ -341,34 +282,11 @@ msgstr ""
 "Attention!\n"
 "‘/sbin/open_multiboot’ n’est pas installé!"
 
-#: OMBManager.py:36
 msgid "Where do you want to install openMultiboot?"
 msgstr "Où voulez-vous installer openMultiboot?"
 
-#: OMBManager.py:127
 msgid "You need the module "
 msgstr "Vous avez besoin du module "
-
-#: OMBManagerInstall.py:395
-msgid "Your STB doesn't seem supported"
-msgstr "Votre récepteur ne semble pas supporté"
-
-#: OMBManagerAbout.py:52
-msgid "openMultiboot About"
-msgstr "À propos d’openMultiboot"
-
-#: OMBManagerInstall.py:246
-msgid "openMultiboot Install"
-msgstr "Installer openMultiboot"
-
-#: OMBManagerList.py:127
-msgid "openMultiboot Manager"
-msgstr "Gestionnaire d’openMultiboot"
-
-#: plugin.py:60
-#, python-format
-msgid "zip archive was successfully added to '%s' OMB!"
-msgstr "l’archive zip a été installé avec succès dans ‘%s’ OMB!"
 
 msgid ""
 "You want to install an alternative kernel-module-nandsim?\n"
@@ -377,17 +295,18 @@ msgstr ""
 "Vous voulez installer un kernel-module-nandsim alternatif?\n"
 "La version de Linux peut être différente de celle du module!"
 
-msgid "Install alternative '/sbin/open_multiboot'"
-msgstr "Installer un ‘/sbin/open_multiboot’ alternatif"
+msgid "Your STB doesn't seem supported"
+msgstr "Votre récepteur ne semble pas supporté"
 
-msgid "(Unpack error!) "
-msgstr "(Erreur de décompression!)"
+msgid "openMultiboot About"
+msgstr "À propos d’openMultiboot"
 
-msgid ""
-"For this reciever need only first partition muliboot image for use "
-"'openMultiboot'!\n"
-"Current partition muliboot image - %s"
-msgstr ""
-"Ce récepteur n’a besoin que de la première partition de l’image multiboot "
-"pour utiliser ‘openMultiboot’!\n"
-"Partition courante de l’image multiboot - %s"
+msgid "openMultiboot Install"
+msgstr "Installer openMultiboot"
+
+msgid "openMultiboot Manager"
+msgstr "Gestionnaire d’openMultiboot"
+
+#, python-format
+msgid "zip archive was successfully added to '%s' OMB!"
+msgstr "l’archive zip a été installé avec succès dans ‘%s’ OMB!"
