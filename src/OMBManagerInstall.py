@@ -207,7 +207,7 @@ elif BRANDING and WORKAROUND:
 			OMB_GETMACHINEKERNELFILE = "kernel1.bin"
 			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
-	elif BOX_MODEL == "zgemma":
+	elif BOX_MODEL == "airdigital":
 		OMB_GETIMAGEFOLDER = "zgemma/" + BOX_NAME
 		if BOX_NAME == "h7":
 			OMB_GETMACHINEKERNELFILE = "kernel.bin"
