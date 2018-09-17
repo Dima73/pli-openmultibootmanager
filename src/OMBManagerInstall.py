@@ -98,6 +98,7 @@ elif fileExists("/proc/stb/info/hwmodel"):
 		model = l.read()
 		BOX_NAME = str(model.lower().strip())
 		l.close()
+		BOX_MODEL = "qviart"
 	except:
 		pass
 	if BOX_NAME.startswith('fusion') or BOX_NAME.startswith("purehd"):

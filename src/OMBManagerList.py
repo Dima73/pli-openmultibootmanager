@@ -400,6 +400,8 @@ class OMBManagerList(Screen):
 			box_name = "vu" + BOX_NAME
 		if box_name == "et11000":
 			box_name = "et1"
+		if box_name == "lunix3-4k":
+			box_name = "lunix3"
 		try:
 			archconffile = "%s/etc/opkg/arch.conf" % base_path
 			with open(archconffile, "r") as arch:
