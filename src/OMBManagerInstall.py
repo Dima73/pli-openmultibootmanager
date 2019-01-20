@@ -51,7 +51,7 @@ except:
 
 BOX_MODEL = ""
 BOX_NAME = ""
-if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/hwmodel") and not fileExists("/proc/stb/info/boxtype"):
+if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/hwmodel") and not fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/gbmodel"):
 	try:
 		l = open("/proc/stb/info/vumodel")
 		model = l.read()
@@ -60,7 +60,7 @@ if fileExists("/proc/stb/info/vumodel") and not fileExists("/proc/stb/info/hwmod
 		BOX_MODEL = "vuplus"
 	except:
 		pass
-elif fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/hwmodel"):
+elif fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/hwmodel") and not fileExists("/proc/stb/info/gbmodel"):
 	try:
 		l = open("/proc/stb/info/boxtype")
 		model = l.read()
@@ -82,7 +82,7 @@ elif fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/hwm
 			BOX_MODEL = "gfutures"
 		elif BOX_NAME.startswith('vs'):
 			BOX_MODEL = "gfutures"
-		elif BOX_NAME.startswith('bre2ze4k'):
+		elif BOX_NAME.startswith('e4hd'):
 			BOX_MODEL = "gfutures"
 		elif BOX_NAME.startswith('osm'):
 			BOX_MODEL = "xcore"
@@ -92,7 +92,7 @@ elif fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/hwm
 			BOX_MODEL = "airdigital"
 	except:
 		pass
-elif fileExists("/proc/stb/info/hwmodel"):
+elif fileExists("/proc/stb/info/hwmodel") and not fileExists("/proc/stb/info/gbmodel"):
 	try:
 		l = open("/proc/stb/info/hwmodel")
 		model = l.read()
@@ -103,7 +103,7 @@ elif fileExists("/proc/stb/info/hwmodel"):
 		pass
 	if BOX_NAME.startswith('fusion') or BOX_NAME.startswith("purehd"):
 		BOX_MODEL = "xsarius"
-elif fileExists("/proc/stb/info/model") and not fileExists("/proc/stb/info/hwmodel"):
+elif fileExists("/proc/stb/info/model") and not fileExists("/proc/stb/info/hwmodel") and not fileExists("/proc/stb/info/gbmodel"):
 	try:
 		l = open("/proc/stb/info/model")
 		model = l.read()
@@ -111,6 +111,16 @@ elif fileExists("/proc/stb/info/model") and not fileExists("/proc/stb/info/hwmod
 		l.close()
 		if BOX_NAME.startswith('dm'):
 			BOX_MODEL = "dreambox"
+	except:
+		pass
+elif fileExists("/proc/stb/info/gbmodel") and not fileExists("/proc/stb/info/hwmodel"):
+	try:
+		l = open("/proc/stb/info/gbmodel")
+		model = l.read()
+		BOX_NAME = str(model.lower().strip())
+		l.close()
+		if BOX_NAME.startswith('gb'):
+			BOX_MODEL = "gigablue"
 	except:
 		pass
 
@@ -152,7 +162,7 @@ if BRANDING and not WORKAROUND:
 	OMB_GETMACHINEROOTFILE = getMachineRootFile()
 	OMB_GETMACHINEBUILD = getMachineBuild()
 	if 'hd-emmc' in OMB_GETIMAGEFILESYSTEM:
-		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k" or BOX_NAME == "lunix3-4k":
+		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "e4hd" or BOX_NAME == "lunix3-4k":
 			OMB_GETMACHINEKERNELFILE = "kernel1.bin"
 			if BOX_NAME == "lunix3-4k":
 				OMB_GETMACHINEKERNELFILE = "oe_kernel.bin"
@@ -180,6 +190,11 @@ elif BRANDING and WORKAROUND:
 		OMB_GETMACHINEKERNELFILE = "oe_kernel.bin"
 		OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 		OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
+	elif BOX_NAME == "gbquad4k" or BOX_NAME == "gbue4k":
+		OMB_GETIMAGEFOLDER = "gigablue/" + (BOX_NAME == "gbue4k" and "ue4k" or "quad4k")
+		OMB_GETMACHINEKERNELFILE = "kernel.bin"
+		OMB_GETIMAGEFILESYSTEM = "tar.bz2"
+		OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
 	elif BOX_MODEL == "xtrend":
 		if BOX_NAME.startswith("et7"):
 			OMB_GETIMAGEFOLDER = "et7x00"
@@ -204,7 +219,7 @@ elif BRANDING and WORKAROUND:
 		elif BOX_NAME.startswith('7000S'):
 			OMB_GETIMAGEFOLDER = "miraclebox/" + 'micro'
 	elif BOX_MODEL == "gfutures":
-		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k":
+		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "e4hd":
 			OMB_GETMACHINEKERNELFILE = "kernel1.bin"
 			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
@@ -502,7 +517,7 @@ class OMBManagerInstall(Screen):
 		base_path = src_path + '/' + (self.alt_install and config.plugins.omb.alternative_image_folder.value or OMB_GETIMAGEFOLDER)
 		rootfs_path = base_path + '/' + OMB_GETMACHINEROOTFILE
 		kernel_path = base_path + '/' + OMB_GETMACHINEKERNELFILE
-		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k":
+		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "e4hd":
 			if OMB_GETMACHINEKERNELFILE == "kernel1.bin" and not os.path.exists(kernel_path):
 				kernel_path = base_path + '/' + "kernel.bin"
 		if os.system(OMB_TAR_BIN + ' jxf %s -C %s' % (rootfs_path,dst_path)) != 0:

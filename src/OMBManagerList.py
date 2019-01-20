@@ -473,18 +473,28 @@ class OMBManagerList(Screen):
 		text = _("Please select the necessary option...")
 		menu = [(_("Readme"), "readme")]
 		if self.checkflashImage():
-			if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "bre2ze4k":
+			if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "e4hd" or BOX_NAME == "h7" or BOX_NAME == "gbquad4k" or BOX_NAME == "gbue4k":
 				mount_part = os.popen("readlink /dev/root").read()
-				if 'mmcblk0p3' not in mount_part:
-					mount_text = "n/a"
-					if 'mmcblk0p5' in mount_text:
-						mount_text = "2"
-					elif 'mmcblk0p7' in mount_text:
-						mount_text = "3"
-					elif 'mmcblk0p9' in mount_text:
-						mount_text = "4"
-					self.session.open(MessageBox,_("For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s") % mount_text, MessageBox.TYPE_INFO)
-					return
+				if BOX_NAME == "gbquad4k" or BOX_NAME == "gbue4k":
+					if 'mmcblk0p5' not in mount_part:
+						mount_text = "n/a"
+						if 'mmcblk0p7' in mount_text:
+							mount_text = "2"
+						elif 'mmcblk0p9' in mount_text:
+							mount_text = "3"
+						self.session.open(MessageBox,_("For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s") % mount_text, MessageBox.TYPE_INFO)
+						return
+				else:
+					if 'mmcblk0p3' not in mount_part:
+						mount_text = "n/a"
+						if 'mmcblk0p5' in mount_text:
+							mount_text = "2"
+						elif 'mmcblk0p7' in mount_text:
+							mount_text = "3"
+						elif 'mmcblk0p9' in mount_text:
+							mount_text = "4"
+						self.session.open(MessageBox,_("For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s") % mount_text, MessageBox.TYPE_INFO)
+						return
 			if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.autoscan'):
 				menu.append((_("Enable autoscan zip archive at mount device"), "enablescan"))
 			else:
