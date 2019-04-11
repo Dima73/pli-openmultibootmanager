@@ -161,7 +161,7 @@ if BRANDING and not WORKAROUND:
 	OMB_GETMACHINEKERNELFILE = getMachineKernelFile()
 	OMB_GETMACHINEROOTFILE = getMachineRootFile()
 	OMB_GETMACHINEBUILD = getMachineBuild()
-	if 'hd-emmc' in OMB_GETIMAGEFILESYSTEM:
+	if 'emmc' in OMB_GETIMAGEFILESYSTEM:
 		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "e4hd" or BOX_NAME == "lunix3-4k":
 			OMB_GETMACHINEKERNELFILE = "kernel1.bin"
 			if BOX_NAME == "lunix3-4k":
@@ -175,7 +175,7 @@ elif BRANDING and WORKAROUND:
 		OMB_GETMACHINEKERNELFILE = "kernel_cfe_auto.bin"
 		if BOX_NAME == "solo2" or BOX_NAME == "duo2" or BOX_NAME == "solose" or BOX_NAME == "zero":
 			OMB_GETMACHINEROOTFILE = "root_cfe_auto.bin"
-		elif BOX_NAME == "solo4k" or BOX_NAME == "uno4k" or BOX_NAME == "uno4kse" or BOX_NAME == "ultimo4k" or BOX_NAME == "zero4k":
+		elif BOX_NAME == "solo4k" or BOX_NAME == "uno4k" or BOX_NAME == "uno4kse" or BOX_NAME == "ultimo4k" or BOX_NAME == "zero4k" or BOX_NAME == "duo4k":
 			OMB_GETMACHINEKERNELFILE = "kernel_auto.bin"
 			OMB_GETIMAGEFILESYSTEM = "tar.bz2"
 			OMB_GETMACHINEROOTFILE = "rootfs.tar.bz2"
@@ -185,7 +185,7 @@ elif BRANDING and WORKAROUND:
 		OMB_GETIMAGEFOLDER = "update/" + BOX_NAME + "/cfe"
 		OMB_GETMACHINEKERNELFILE = "oe_kernel.bin"
 		OMB_GETMACHINEROOTFILE = "oe_rootfs.bin"
-	elif BOX_NAME == "lunix3-4k":
+	elif BOX_NAME == "lunix3-4k" or BOX_NAME == "lunix4k" :
 		OMB_GETIMAGEFOLDER = "update/" + BOX_NAME
 		OMB_GETMACHINEKERNELFILE = "oe_kernel.bin"
 		OMB_GETIMAGEFILESYSTEM = "tar.bz2"
