@@ -88,6 +88,8 @@ elif fileExists("/proc/stb/info/boxtype") and not fileExists("/proc/stb/info/hwm
 			BOX_MODEL = "xcore"
 		elif BOX_NAME.startswith('g300') or BOX_NAME.startswith('7000S'):
 			BOX_MODEL = "ini"
+		elif BOX_NAME.startswith('viper'):
+			BOX_MODEL = "entwopia"
 		elif BOX_NAME == 'sh1' or BOX_NAME == 'h3' or BOX_NAME == 'h4' or BOX_NAME == 'h5' or BOX_NAME == 'lc' or BOX_NAME == 'i55' or BOX_NAME == 'h7':
 			BOX_MODEL = "airdigital"
 	except:
@@ -185,7 +187,11 @@ elif BRANDING and WORKAROUND:
 		OMB_GETIMAGEFOLDER = "update/" + BOX_NAME + "/cfe"
 		OMB_GETMACHINEKERNELFILE = "oe_kernel.bin"
 		OMB_GETMACHINEROOTFILE = "oe_rootfs.bin"
-	elif BOX_NAME == "lunix3-4k" or BOX_NAME == "lunix4k" :
+	elif BOX_MODEL == "entwopia":
+		OMB_GETIMAGEFOLDER = BOX_NAME
+		OMB_GETMACHINEKERNELFILE = "kernel.bin"
+		OMB_GETMACHINEROOTFILE = "rootfs.bin"
+	elif BOX_NAME == "lunix3-4k" or BOX_NAME == "lunix4k":
 		OMB_GETIMAGEFOLDER = "update/" + BOX_NAME
 		OMB_GETMACHINEKERNELFILE = "oe_kernel.bin"
 		OMB_GETIMAGEFILESYSTEM = "tar.bz2"
