@@ -1,0 +1,289 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-15 17:16+0100\n"
+"PO-Revision-Date: 2019-11-13 20:50+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.9\n"
+
+msgid ""
+" to use openMultiboot\n"
+"Do you want install it?"
+msgstr ""
+" для використання openMultiboot.\n"
+"Ви хочете установити його зараз?"
+
+msgid "(Folder is empty!) "
+msgstr "(Порожній каталог!) "
+
+msgid "About"
+msgstr "Інфо"
+
+msgid "Cancel"
+msgstr "Вийти"
+
+msgid "Exit"
+msgstr "Виxід"
+
+msgid ""
+"Warning!\n"
+"'/sbin/open_multiboot' not installed!"
+msgstr ""
+"Внимание!\n"
+"'/sbin/open_multiboot' не встановлено!"
+
+msgid "Add zip archive with image in 'open-multiboot-upload'"
+msgstr "Додати zip архів з іміджем в 'open-multiboot-upload'"
+
+msgid "Cannot create data folder"
+msgstr "Не вдалося створити каталог"
+
+msgid "Cannot create folder %s"
+msgstr "Не вдалося створити каталог %s"
+
+msgid "Cannot create kernel folder %s"
+msgstr "Не вдалося створити папку ядра %s"
+
+msgid "Cannot create virtual MTD device"
+msgstr "Не вдалося створити віртуальний MTD пристрій"
+
+msgid "Cannot deflate image"
+msgstr "Не вдалося розпакувати імідж"
+
+msgid "Cannot extract nfi image"
+msgstr "Не вдалося витягнути імідж nfi"
+
+msgid "Cannot format the device"
+msgstr "Не вдалося відформатувати пристрій зберігання"
+
+msgid "Cannot install "
+msgstr "Не вдалося встановити "
+
+msgid "Cannot remount the device"
+msgstr "Не вдалося змонтувати пристрій зберігання"
+
+msgid "Cannot umount the device"
+msgstr "Не вдалося розмонтувати пристрій зберігання"
+
+msgid "Choose the image to install"
+msgstr "Виберіть імідж для установки..."
+
+msgid "Delete"
+msgstr "Видалити"
+
+msgid "Delete folder %s and all file"
+msgstr "Видалити каталог %s із усіма файлами"
+
+msgid "Disable '/sbin/open_multiboot'"
+msgstr "Вимкнути '/sbin/open_multiboot'"
+
+msgid "Disable autoscan zip archive at mount device"
+msgstr "Викл. автосканування zip архіву при монтуванні пристроїв"
+
+msgid "Do you really want add %s with image in 'open-multiboot-upload'?"
+msgstr "Ви дійсно хочете добавити  %s з іміджем в 'open-multiboot-upload'?"
+
+msgid "Do you want to delete %s?"
+msgstr "Ви дійсно хочете видалити %s?"
+
+msgid "Do you want to reboot box now ?"
+msgstr "Ви хочете зробити перезавантаження ресивера зараз?"
+
+msgid "Do you want to reboot now ?"
+msgstr "Ви хочете зробити перезавантаження зараз?"
+
+msgid "Enable '/sbin/open_multiboot'"
+msgstr "Включити '/sbin/open_multiboot'"
+
+msgid "Enable autoscan zip archive at mount device"
+msgstr "Вкл. автосканування zip архіву при монтуванні пристроїв"
+
+msgid "Error adding zip archive!"
+msgstr "Помилка додавання zip архіву!"
+
+msgid "Error removing zip archive!"
+msgstr "Помилка видалення zip архіву!"
+
+msgid "Error set new timeout!"
+msgstr "Помилка при установці нового таймауту!"
+
+msgid "Extra setup"
+msgstr "Екстра налаштування"
+
+msgid ""
+"Filesystem not supported\n"
+"Do you want format your drive?"
+msgstr ""
+"Файлова система не підтримується,\n"
+"хочете відформатувати Ваш пристрій зберігання в ext4 (всі дані будуть втрачені)?"
+
+msgid "Fix mount devices (for PLi)"
+msgstr "Фікс монтування пристроїв зберігання (для PLi)"
+
+msgid "Flash image"
+msgstr "Flash імідж"
+
+msgid "Incorrect time!"
+msgstr "Невірний час!"
+
+msgid "Install"
+msgstr "Встановити"
+
+msgid "Multi boot loader for enigma2 box"
+msgstr "Мульти завантажувач для ресиверів на enigma2"
+
+msgid "Next boot: %s"
+msgstr "Наступне завантаження: %s"
+
+msgid "No suitable devices found"
+msgstr "Не знайдені відповідні пристрої зберігання."
+
+msgid "Not found boxbranding.so!"
+msgstr "Не знайдено boxbranding.so!"
+
+msgid "OMB disabled."
+msgstr "OMB відключений."
+
+msgid "OMB enabled."
+msgstr "OMB включен."
+
+msgid "OpenMultiboot Manager"
+msgstr "Менеджер openMultiboot"
+
+msgid "Please enter new name:"
+msgstr "Введіть нове імя:"
+
+msgid "Please select the necessary option..."
+msgstr "Будь ласка, виберіть необхідну Вам дію..."
+
+msgid "Please upload an image inside %s"
+msgstr "Будь ласка, завантажте потрібний архів з іміджем (будь-яке імя без пропусків.zip)в %s"
+
+msgid "Please wait 40 seconds, while delete is in progress."
+msgstr "Будь ласка, зачекайте 40 секунд, видалення в процесі."
+
+msgid "Please wait while format is in progress."
+msgstr "Будь ласка зачекайте, процес форматування в процесі."
+
+msgid "Please wait while installation is in progress."
+msgstr "Будь ласка зачекайте, установка в процесі."
+
+msgid "Please wait while delete is in progress."
+msgstr "Будь ласка зачекайте, йде процес видалення"
+
+msgid ""
+"Please wait while installation is in progress.\n"
+"This operation may take a while."
+msgstr ""
+"Будь ласка зачекайте, поки йде процес встановлення.\n"
+"Ця операція може зайняти досить тривалий час."
+
+msgid "Press OK to next boot."
+msgstr "Натисніть OK для вибору наступного завантаження."
+
+msgid "Read error current dir, sorry."
+msgstr "Вибачте, помилка читання поточного каталогу."
+
+msgid "Readme"
+msgstr "Readme (допомога)"
+
+msgid "Cannot create main folder %s"
+msgstr "Не вдалося створити домашній каталог %s"
+
+msgid "Rename"
+msgstr "Перейменувати"
+
+msgid "Current Running Image:"
+msgstr "Поточний завантажений імідж:"
+
+msgid "Set new timeout (sec)"
+msgstr "Встановіть новий тайм-аут (сек.)"
+
+msgid "Set next boot to %s ?"
+msgstr "Установити наступне завантаження ресивера в %s ?"
+
+msgid "The folder %s already exist"
+msgstr "Каталог %s уже існує"
+
+msgid "Timeout boot menu: next %d sec"
+msgstr "Таймаут меню завантаження: зараз %d сек."
+
+msgid "Where do you want to install openMultiboot?"
+msgstr "Куди Ви хочете встановити openMultiboot?"
+
+msgid "Open MultiBoot Menu"
+msgstr "Меню openMultiboot"
+
+msgid "Disable boot menu"
+msgstr "Відключити меню завантаження"
+
+msgid "Enable boot menu"
+msgstr "Включити меню завантаження"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "You need the module "
+msgstr "Вам необхідний модуль "
+
+msgid "Your STB doesn't seem supported"
+msgstr "Ваш ресивер здається не підтримується!"
+
+msgid "openMultiboot About"
+msgstr "Інформація openMultiboot"
+
+msgid "Error unpacking rootfs"
+msgstr "Помилка розпакування rootfs"
+
+msgid "Error copying kernel"
+msgstr "Помилка копіювання ядра"
+
+msgid "Error copying unpacked rootfs"
+msgstr "Помилка розпакованого rootfs"
+
+msgid "openMultiboot Install"
+msgstr "Встановити openMultiboot"
+
+msgid "openMultiboot Manager"
+msgstr "Менеджер openMultiboot"
+
+msgid "zip archive was successfully added to '%s' OMB!"
+msgstr "zip архів було успішно додано в '%s' OMB!"
+
+msgid "Generic error in unpaack process"
+msgstr "Загальна помилка під час процесу розпакування"
+
+msgid "Alternative name image folder"
+msgstr "Альтернативне імя каталогу іміджу"
+
+msgid "Standard install"
+msgstr "Стандартне встановлення"
+
+msgid "Use altenative folder"
+msgstr "Використовувати альтернативний каталог"
+
+msgid "Install '/sbin/open_multiboot'"
+msgstr "Встановити '/sbin/open_multiboot'"
+
+msgid "Install alternative '/sbin/open_multiboot'"
+msgstr "Встановити альтернативний '/sbin/open_multiboot'"
+
+msgid ""
+"You want to install an alternative kernel-module-nandsim?\n"
+"Linux version may be different from the module!"
+msgstr ""
+"Ви дійсно хочете інсталювати альтернативний kernel-module-nandsim?\n"
+"Версія Лінукса може не збігатися з модулем!"
+
+msgid "(Unpack error!) "
+msgstr "(Помилка розпакування!) "
+
+msgid "For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s"
+msgstr "Для цього ресивера необхідний тільки перший розділ мультизавантажувального іміджу для використання 'openMultiboot'!\nПоточний розділ мультизавантажувального іміджу - %s"
