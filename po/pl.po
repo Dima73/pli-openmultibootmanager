@@ -276,7 +276,7 @@ msgid ""
 "'/sbin/open_multiboot' not installed!"
 msgstr ""
 "UWAGA!\n"
-"'/sbin/open_multiboot' nie zainstalowano!"
+"Nie zainstalowano /sbin/open_multiboot !"
 
 msgid "Where do you want to install openMultiboot?"
 msgstr "Gdzie zainstalować openMultiBoot?"
