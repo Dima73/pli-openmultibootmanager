@@ -213,7 +213,7 @@ def OMBManager(session, **kwargs):
 		# When use nfidump
 		if BOX_MODEL == "dreambox":
 			kernel_module = None
-			if BOX_NAME == "dm500hd" or BOX_NAME == "dm800" or BOX_NAME == "dm800se" or BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or "dm500hdv2" or BOX_NAME == "dm800sev2":
+			if BOX_NAME == "dm500hd" or BOX_NAME == "dm800" or BOX_NAME == "dm800se" or BOX_NAME == "dm7020hd" or BOX_NAME == "dm7020hdv2" or BOX_NAME == "dm8000" or BOX_NAME == "dm500hdv2" or BOX_NAME == "dm800sev2":
 				if not os.path.exists(OMB_NFIDUMP_BIN):
 					OMBManagerKernelModule(session, "nfidump")
 					return
