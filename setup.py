@@ -12,4 +12,3 @@ setup(name='enigma2-plugin-extensions-openmultiboot',
 		description='Multi boot loader manager for enigma2 box',
 		cmdclass=setup_translate.cmdclass,
 	)
-

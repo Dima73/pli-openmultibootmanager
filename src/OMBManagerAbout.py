@@ -50,7 +50,7 @@ class OMBManagerAbout(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		self.setTitle(_('openMultiboot About'))
 
 		about = "openMultiboot Manager " + OMB_MANAGER_VERION + "\n"
