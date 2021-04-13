@@ -47,7 +47,7 @@ def msgAddZipClosed(ret, curfile=None):
 					found_dir = upload_dir
 			else:
 				for p in harddiskmanager.getMountedPartitions():
-					if p and os.access(p.mountpoint, os.F_OK|os.R_OK) and p.mountpoint != '/':
+					if p and os.access(p.mountpoint, os.F_OK | os.R_OK) and p.mountpoint != '/':
 						data_dir = p.mountpoint + '/' + OMB_DATA_DIR
 						if os.path.exists(data_dir) and isMounted(p.mountpoint):
 							upload_dir = p.mountpoint + '/' + OMB_UPLOAD_DIR

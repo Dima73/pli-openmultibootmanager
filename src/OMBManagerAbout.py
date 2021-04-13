@@ -29,7 +29,7 @@ from Components.Label import Label
 from OMBManagerCommon import OMB_DATA_DIR, OMB_UPLOAD_DIR, OMB_TMP_DIR, OMB_MANAGER_VERION
 from OMBManagerInstall import BOX_NAME
 from OMBManagerLocale import _
-from enigma  import getDesktop
+from enigma import getDesktop
 try:
 	screenWidth = getDesktop(0).size().width()
 except:

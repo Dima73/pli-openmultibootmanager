@@ -606,7 +606,7 @@ class OMBManagerInstall(Screen):
 			else:
 				self.showError(_("Your STB doesn\'t seem supported"))
 				return False
-			cmd= "chmod 755 " + ubifile
+			cmd = "chmod 755 " + ubifile
 			rc = os.system(cmd)
 			cmd = "python " + ubifile + " " + rootfs_path + " -o " + ubi_path
 			rc = os.system(cmd)
@@ -654,7 +654,7 @@ class OMBManagerInstall(Screen):
 			nfidata.close()
 			return False
 		else:
-			machine_type = header[4:4+header[4:].find('\0')]
+			machine_type = header[4:4 + header[4:].find('\0')]
 			if header[:4] == 'NFI3':
 				machine_type = 'dm7020hdv2'
 		print '[OMB] Dreambox image type: %s' % machine_type
