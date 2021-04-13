@@ -31,10 +31,12 @@ from Tools.Notifications import AddPopup
 from mimetypes import add_type
 add_type("application/zip", ".zip")
 
+
 class MoveToupload(MessageBox):
 	def __init__(self, session, file):
 		MessageBox.__init__(self, session, _("Do you really want add %s with image in 'open-multiboot-upload'?") % file, MessageBox.TYPE_YESNO)
 		self.skinName = "MessageBox"
+
 
 def msgAddZipClosed(ret, curfile=None):
 	if ret and curfile:
@@ -64,6 +66,7 @@ def msgAddZipClosed(ret, curfile=None):
 		except:
 			pass
 
+
 def filescanOpen(list, session, **kwargs):
 	try:
 		file = list[0].path
@@ -73,6 +76,7 @@ def filescanOpen(list, session, **kwargs):
 			session.open(MessageBox, _("Read error current dir, sorry."), MessageBox.TYPE_ERROR)
 	except:
 		pass
+
 
 def startFilescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -87,6 +91,7 @@ def startFilescan(**kwargs):
 			description=_("Add zip archive with image in 'open-multiboot-upload'"),
 			openfnc=filescanOpen,
 		)
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name=_("OpenMultiboot"), description=_("Multi boot loader for enigma2 box"), icon='plugin.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=OMBManager),

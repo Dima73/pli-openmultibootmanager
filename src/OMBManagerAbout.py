@@ -35,6 +35,7 @@ try:
 except:
 	screenWidth = 720
 
+
 class OMBManagerAbout(Screen):
 	if screenWidth >= 1920:
 		skin = """

@@ -52,6 +52,7 @@ try:
 except:
 	screenWidth = 720
 
+
 def ismultibootFile():
 	multiboot_bin = "/sbin/open_multiboot"
 	if not os.path.isfile(multiboot_bin):
@@ -77,7 +78,9 @@ def ismultibootFile():
 		return True
 	return False
 
+
 loadScript = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/install-nandsim.sh"
+
 
 class OMBManagerList(Screen):
 	if screenWidth >= 1920:
@@ -519,6 +522,7 @@ class OMBManagerList(Screen):
 			menu.append((_("Alternative name image folder") + ": %s" % config.plugins.omb.alternative_image_folder.value, "folder"))
 		if not self.checkMountFix():
 			menu.append((_("Fix mount devices (for PLi)"), "fix_mount"))
+
 		def extraAction(choice):
 			if choice:
 				if choice[1] == "readme":

@@ -290,6 +290,7 @@ OMB_MKNOD_BIN = '/bin/mknod'
 OMB_UNJFFS2_BIN = '/usr/bin/unjffs2'
 OMB_NFIDUMP_BIN = '/usr/sbin/nfidump'
 
+
 class OMBManagerInstall(Screen):
 	if screenWidth >= 1920:
 		skin = """
@@ -368,6 +369,7 @@ class OMBManagerInstall(Screen):
 	def keyInstall(self):
 		text = _("Please select the necessary option...")
 		menu = [(_("Standard install"), "standard"), (_("Use altenative folder"), "altenative")]
+
 		def setAction(choice):
 			if choice:
 				if choice[1] == "standard":

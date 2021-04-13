@@ -33,6 +33,7 @@ import os
 nandsim_alrenative_module = [] #['formuler1', 'formuler3', 'formuler4']
 loadScript = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/install-nandsim.sh"
 
+
 class OMBManagerInit:
 	def __init__(self, session):
 		self.session = session
@@ -119,6 +120,7 @@ class OMBManagerInit:
 			else:
 				self.createDir(response)
 
+
 class OMBManagerKernelModule:
 	def __init__(self, session, kernel_module, branding=False):
 		self.session = session
@@ -195,6 +197,7 @@ class OMBManagerKernelModule:
 		else:
 			OMBManager(self.session)
 
+
 def OMBManager(session, **kwargs):
 	found = False
 	omb_image = os.path.ismount('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot')
@@ -244,6 +247,7 @@ def OMBManager(session, **kwargs):
 	if not found:
 		if not omb_image:
 			OMBManagerInit(session)
+
 
 def isMounted(device):
 	try:
