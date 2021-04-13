@@ -115,7 +115,7 @@ class OMBManagerInit:
 			fs_type = self.getFSType(response.device)
 			if fs_type not in ['ext3', 'ext4']:
 				self.response = response
-				self.session.openWithCallback( self.formatDevice, MessageBox, _("Filesystem not supported\nDo you want format your drive?"), type=MessageBox.TYPE_YESNO, default=False)
+				self.session.openWithCallback(self.formatDevice, MessageBox, _("Filesystem not supported\nDo you want format your drive?"), type=MessageBox.TYPE_YESNO, default=False)
 			else:
 				self.createDir(response)
 
