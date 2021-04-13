@@ -45,7 +45,7 @@ import os
 import fileinput
 
 config.plugins.omb = ConfigSubsection()
-config.plugins.omb.alternative_image_folder = ConfigText(default = OMB_GETIMAGEFOLDER, fixed_size=False)
+config.plugins.omb.alternative_image_folder = ConfigText(default=OMB_GETIMAGEFOLDER, fixed_size=False)
 
 try:
 	screenWidth = getDesktop(0).size().width()
@@ -573,7 +573,7 @@ class OMBManagerList(Screen):
 					text = _("Install")
 					self.session.open(Console, text, [cmd])
 				elif choice[1] == "folder":
-					self.session.openWithCallback(self.renameFolderCallback, VirtualKeyBoard, title = _("Please enter new name:"), text=config.plugins.omb.alternative_image_folder.value)
+					self.session.openWithCallback(self.renameFolderCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=config.plugins.omb.alternative_image_folder.value)
 		dlg = self.session.openWithCallback(extraAction, ChoiceBox, title=text, list=menu)
 		dlg.setTitle(_("Open MultiBoot Menu"))
 
@@ -586,7 +586,7 @@ class OMBManagerList(Screen):
 	def deleteAnswer(self, answer):
 		if answer:
 			os.system('rm -rf ' + self.data_dir)
-			self.waitmessagebox = self.session.open(MessageBox,_('Please wait 40 seconds, while delete is in progress.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.waitmessagebox = self.session.open(MessageBox,_('Please wait 40 seconds, while delete is in progress.'), MessageBox.TYPE_INFO, enable_input=False)
 			self.waittimer = eTimer()
 			self.waittimer.callback.append(self.deleteFolder)
 			self.waittimer.start(40000, True)
@@ -616,7 +616,7 @@ class OMBManagerList(Screen):
 		if self["list"].getIndex() == 0:
 			if name.endswith('(Flash)'):
 				name = name[:-8]
-		self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title = _("Please enter new name:"), text=name)
+		self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
 
 	def renameEntryCallback(self, name):
 		if name:
@@ -632,7 +632,7 @@ class OMBManagerList(Screen):
 
 	def deleteConfirm(self, confirmed):
 		if confirmed and len(self.entry_to_delete['path']) > 1:
-			self.messagebox = self.session.open(MessageBox,_('Please wait while delete is in progress.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.messagebox = self.session.open(MessageBox,_('Please wait while delete is in progress.'), MessageBox.TYPE_INFO, enable_input=False)
 			self.timer = eTimer()
 			self.timer.callback.append(self.deleteImage)
 			self.timer.start(500)
@@ -683,7 +683,7 @@ class OMBManagerList(Screen):
 		if len(upload_list) > 0:
 			self.session.openWithCallback(self.afterInstall, OMBManagerInstall, self.mount_point, upload_list)
 		else:
-			self.session.open(MessageBox, _("Please upload an image inside %s") % self.upload_dir, type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Please upload an image inside %s") % self.upload_dir, type=MessageBox.TYPE_ERROR)
 
 	def ombImageMountFix(self, file):
 		fix = False

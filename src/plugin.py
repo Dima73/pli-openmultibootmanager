@@ -60,7 +60,7 @@ def msgAddZipClosed(ret, curfile=None):
 					txt = _("zip archive was successfully added to '%s' OMB!") % (found_dir)
 				else:
 					txt = _("Error adding zip archive!")
-				AddPopup(txt, type = MessageBox.TYPE_INFO, timeout = 10, id = "InfoAddZipArchive")
+				AddPopup(txt, type=MessageBox.TYPE_INFO, timeout=10, id="InfoAddZipArchive")
 		except:
 			pass
 
@@ -80,15 +80,14 @@ def startFilescan(**kwargs):
 		return []
 	return \
 		Scanner(mimetypes=["application/zip"],
-			paths_to_scan =
-				[
-					ScanPath(path = "", with_subdirs = False),
+			paths_to_scan=[
+					ScanPath(path="", with_subdirs=False),
 				],
-			name = "Open Multiboot",
-			description = _("Add zip archive with image in 'open-multiboot-upload'"),
-			openfnc = filescanOpen,
+			name="Open Multiboot",
+			description=_("Add zip archive with image in 'open-multiboot-upload'"),
+			openfnc=filescanOpen,
 		)
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = _("OpenMultiboot"), description = _("Multi boot loader for enigma2 box"), icon='plugin.png', where = [PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],fnc = OMBManager),
-			PluginDescriptor(name= _("Open Multiboot"), where = PluginDescriptor.WHERE_FILESCAN, fnc = startFilescan)]
+	return [PluginDescriptor(name=_("OpenMultiboot"), description=_("Multi boot loader for enigma2 box"), icon='plugin.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],fnc=OMBManager),
+			PluginDescriptor(name=_("Open Multiboot"), where=PluginDescriptor.WHERE_FILESCAN, fnc=startFilescan)]

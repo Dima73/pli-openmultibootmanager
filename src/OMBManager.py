@@ -47,7 +47,7 @@ class OMBManagerInit:
 			disks_list.append((_("Cancel"), None))
 			self.session.openWithCallback(self.initCallback, MessageBox, message, list=disks_list)
 		else:
-			self.session.open(MessageBox, _("No suitable devices found"), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("No suitable devices found"), type=MessageBox.TYPE_ERROR)
 
 	def getFSType(self, device):
 		try:
@@ -72,7 +72,7 @@ class OMBManagerInit:
 			if not os.path.exists(upload_dir):
 				os.makedirs(upload_dir)
 		except OSError as exception:
-			self.session.open(MessageBox, _("Cannot create data folder"), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Cannot create data folder"), type=MessageBox.TYPE_ERROR)
 			return
 
 #		if os.path.isfile('/sbin/open_multiboot'):
@@ -82,7 +82,7 @@ class OMBManagerInit:
 
 	def formatDevice(self, confirmed):
 		if confirmed:
-			self.messagebox = self.session.open(MessageBox, _('Please wait while format is in progress.'), type = MessageBox.TYPE_INFO, enable_input=False)
+			self.messagebox = self.session.open(MessageBox, _('Please wait while format is in progress.'), type=MessageBox.TYPE_INFO, enable_input=False)
 			self.timer = eTimer()
 			self.timer.callback.append(self.doFormatDevice)
 			self.timer.start(100, True)
@@ -106,7 +106,7 @@ class OMBManagerInit:
 	def afterFormat(self):
 		self.timer.stop()
 		if len(self.error_message) > 0:
-			self.session.open(MessageBox, self.error_message, type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, self.error_message, type=MessageBox.TYPE_ERROR)
 		else:
 			self.createDir(self.response)
 
@@ -115,7 +115,7 @@ class OMBManagerInit:
 			fs_type = self.getFSType(response.device)
 			if fs_type not in ['ext3', 'ext4']:
 				self.response = response
-				self.session.openWithCallback( self.formatDevice, MessageBox, _("Filesystem not supported\nDo you want format your drive?"), type = MessageBox.TYPE_YESNO, default=False)
+				self.session.openWithCallback( self.formatDevice, MessageBox, _("Filesystem not supported\nDo you want format your drive?"), type=MessageBox.TYPE_YESNO, default=False)
 			else:
 				self.createDir(response)
 
@@ -133,12 +133,12 @@ class OMBManagerKernelModule:
 
 	def warningMessage(self):
 		self.timer.stop()
-		self.session.open(MessageBox, _('Not found boxbranding.so!'),type = MessageBox.TYPE_ERROR)
+		self.session.open(MessageBox, _('Not found boxbranding.so!'),type=MessageBox.TYPE_ERROR)
 
 	def installCallback(self, confirmed):
 		if confirmed:
 			if self.kernel_module != "nfidump":
-				self.messagebox = self.session.open(MessageBox,_('Please wait while installation is in progress.'), MessageBox.TYPE_INFO, enable_input = False)
+				self.messagebox = self.session.open(MessageBox,_('Please wait while installation is in progress.'), MessageBox.TYPE_INFO, enable_input=False)
 			self.timer = eTimer()
 			self.timer.callback.append(self.installModule)
 			self.timer.start(100, True)
@@ -164,7 +164,7 @@ class OMBManagerKernelModule:
 	def afterLoadNfidumpInstall(self):
 		if not os.path.exists(OMB_NFIDUMP_BIN):
 			self.error_message = _('Cannot install ') + self.kernel_module
-			self.session.open(MessageBox, self.error_message, type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, self.error_message, type=MessageBox.TYPE_ERROR)
 		else:
 			OMBManager(self.session)
 
@@ -178,7 +178,7 @@ class OMBManagerKernelModule:
 	def afterLoadInstall(self):
 		if os.system('opkg list_installed | grep ' + self.kernel_module) != 0:
 			self.error_message = _('Cannot install ') + self.kernel_module
-			self.session.open(MessageBox, self.error_message, type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, self.error_message, type=MessageBox.TYPE_ERROR)
 		else:
 			OMBManager(self.session)
 
@@ -191,7 +191,7 @@ class OMBManagerKernelModule:
 						message = _("You want to install an alternative kernel-module-nandsim?\nLinux version may be different from the module!")
 						self.session.openWithCallback(self.alterInstallCallback, MessageBox, message, MessageBox.TYPE_YESNO)
 						return
-			self.session.open(MessageBox, self.error_message, type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, self.error_message, type=MessageBox.TYPE_ERROR)
 		else:
 			OMBManager(self.session)
 
