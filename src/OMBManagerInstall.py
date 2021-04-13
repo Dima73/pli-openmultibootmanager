@@ -255,7 +255,7 @@ elif BRANDING and WORKAROUND:
 		else:
 			OMB_GETIMAGEFILESYSTEM = ""
 else:
-	f = open("/proc/mounts","r")
+	f = open("/proc/mounts", "r")
 	for line in f:
 		if line.find("rootfs") > -1:
 			if line.find("ubi") > -1:
@@ -526,7 +526,7 @@ class OMBManagerInstall(Screen):
 		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "e4hd":
 			if OMB_GETMACHINEKERNELFILE == "kernel1.bin" and not os.path.exists(kernel_path):
 				kernel_path = base_path + '/' + "kernel.bin"
-		if os.system(OMB_TAR_BIN + ' jxf %s -C %s' % (rootfs_path,dst_path)) != 0:
+		if os.system(OMB_TAR_BIN + ' jxf %s -C %s' % (rootfs_path, dst_path)) != 0:
 			self.showError(_("Error unpacking rootfs"))
 			return False
 		if os.path.exists(dst_path + '/usr/bin/enigma2'):

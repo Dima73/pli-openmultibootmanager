@@ -89,5 +89,5 @@ def startFilescan(**kwargs):
 		)
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name=_("OpenMultiboot"), description=_("Multi boot loader for enigma2 box"), icon='plugin.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU],fnc=OMBManager),
+	return [PluginDescriptor(name=_("OpenMultiboot"), description=_("Multi boot loader for enigma2 box"), icon='plugin.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=OMBManager),
 			PluginDescriptor(name=_("Open Multiboot"), where=PluginDescriptor.WHERE_FILESCAN, fnc=startFilescan)]
