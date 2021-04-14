@@ -255,7 +255,7 @@ elif BRANDING and WORKAROUND:
 		else:
 			OMB_GETIMAGEFILESYSTEM = ""
 else:
-	f = open("/proc/mounts","r")
+	f = open("/proc/mounts", "r")
 	for line in f:
 		if line.find("rootfs") > -1:
 			if line.find("ubi") > -1:
@@ -289,6 +289,7 @@ OMB_ECHO_BIN = '/bin/echo'
 OMB_MKNOD_BIN = '/bin/mknod'
 OMB_UNJFFS2_BIN = '/usr/bin/unjffs2'
 OMB_NFIDUMP_BIN = '/usr/sbin/nfidump'
+
 
 class OMBManagerInstall(Screen):
 	if screenWidth >= 1920:
@@ -363,11 +364,12 @@ class OMBManagerInstall(Screen):
 			if ret == 0:
 				self.close()
 			else:
-				self.session.open(MessageBox, _("Error removing zip archive!"), type = MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Error removing zip archive!"), type=MessageBox.TYPE_ERROR)
 
 	def keyInstall(self):
 		text = _("Please select the necessary option...")
 		menu = [(_("Standard install"), "standard"), (_("Use altenative folder"), "altenative")]
+
 		def setAction(choice):
 			if choice:
 				if choice[1] == "standard":
@@ -382,7 +384,7 @@ class OMBManagerInstall(Screen):
 		self.selected_image = self["list"].getCurrent()
 		if not self.selected_image:
 			return
-		self.messagebox = self.session.open(MessageBox, _('Please wait while installation is in progress.\nThis operation may take a while.'), MessageBox.TYPE_INFO, enable_input = False)
+		self.messagebox = self.session.open(MessageBox, _('Please wait while installation is in progress.\nThis operation may take a while.'), MessageBox.TYPE_INFO, enable_input=False)
 		self.timer = eTimer()
 		self.timer.callback.append(self.installPrepare)
 		self.timer.start(100)
@@ -391,7 +393,7 @@ class OMBManagerInstall(Screen):
 
 	def showErrorCallback(self):
 		self.error_timer.stop()
-		self.session.open(MessageBox, self.error_message, type = MessageBox.TYPE_ERROR)
+		self.session.open(MessageBox, self.error_message, type=MessageBox.TYPE_ERROR)
 		self.close()
 
 	def showError(self, error_message):
@@ -526,7 +528,7 @@ class OMBManagerInstall(Screen):
 		if BOX_NAME == "hd51" or BOX_NAME == "vs1500" or BOX_NAME == "e4hd":
 			if OMB_GETMACHINEKERNELFILE == "kernel1.bin" and not os.path.exists(kernel_path):
 				kernel_path = base_path + '/' + "kernel.bin"
-		if os.system(OMB_TAR_BIN + ' jxf %s -C %s' % (rootfs_path,dst_path)) != 0:
+		if os.system(OMB_TAR_BIN + ' jxf %s -C %s' % (rootfs_path, dst_path)) != 0:
 			self.showError(_("Error unpacking rootfs"))
 			return False
 		if os.path.exists(dst_path + '/usr/bin/enigma2'):
@@ -606,7 +608,7 @@ class OMBManagerInstall(Screen):
 			else:
 				self.showError(_("Your STB doesn\'t seem supported"))
 				return False
-			cmd= "chmod 755 " + ubifile
+			cmd = "chmod 755 " + ubifile
 			rc = os.system(cmd)
 			cmd = "python " + ubifile + " " + rootfs_path + " -o " + ubi_path
 			rc = os.system(cmd)
@@ -654,7 +656,7 @@ class OMBManagerInstall(Screen):
 			nfidata.close()
 			return False
 		else:
-			machine_type = header[4:4+header[4:].find('\0')]
+			machine_type = header[4:4 + header[4:].find('\0')]
 			if header[:4] == 'NFI3':
 				machine_type = 'dm7020hdv2'
 		print '[OMB] Dreambox image type: %s' % machine_type
@@ -686,7 +688,7 @@ class OMBManagerInstall(Screen):
 		while nfidata.tell() < total_size:
 			(size, ) = struct.unpack('!L', nfidata.read(4))
 			print '[OMB] Processing partition # %d size %d Bytes' % (part, size)
-			output_names = { 2: 'kernel.bin', 3: 'rootfs.bin' }
+			output_names = {2: 'kernel.bin', 3: 'rootfs.bin'}
 			if part not in output_names:
 				nfidata.seek(size, 1)
 				print '[OMB] Skipping %d data...' % size

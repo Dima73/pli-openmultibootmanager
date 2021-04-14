@@ -45,12 +45,13 @@ import os
 import fileinput
 
 config.plugins.omb = ConfigSubsection()
-config.plugins.omb.alternative_image_folder = ConfigText(default = OMB_GETIMAGEFOLDER, fixed_size=False)
+config.plugins.omb.alternative_image_folder = ConfigText(default=OMB_GETIMAGEFOLDER, fixed_size=False)
 
 try:
 	screenWidth = getDesktop(0).size().width()
 except:
 	screenWidth = 720
+
 
 def ismultibootFile():
 	multiboot_bin = "/sbin/open_multiboot"
@@ -77,7 +78,9 @@ def ismultibootFile():
 		return True
 	return False
 
+
 loadScript = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/install-nandsim.sh"
+
 
 class OMBManagerList(Screen):
 	if screenWidth >= 1920:
@@ -167,7 +170,7 @@ class OMBManagerList(Screen):
 
 	def getMultiboot(self):
 		if not ismultibootFile():
-			self.session.open(MessageBox,_("Warning!\n'/sbin/open_multiboot' not installed!"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Warning!\n'/sbin/open_multiboot' not installed!"), MessageBox.TYPE_ERROR)
 
 	def guessImageTitle(self, base_path, identifier):
 		image_distro = ""
@@ -176,9 +179,9 @@ class OMBManagerList(Screen):
 		if os.path.exists(e2_path + '/boxbranding.so'):
 			helper = os.path.dirname("/usr/bin/python " + os.path.abspath(__file__)) + "/open-multiboot-branding-helper.py"
 			try:
-				fin,fout = os.popen4(helper + " " + e2_path + " image_distro")
+				fin, fout = os.popen4(helper + " " + e2_path + " image_distro")
 				image_distro = fout.read().strip()
-				fin,fout = os.popen4(helper + " " + e2_path + " image_version")
+				fin, fout = os.popen4(helper + " " + e2_path + " image_version")
 				image_version = fout.read().strip()
 			except:
 				fout = os.popen(helper + " " + e2_path + " image_distro")
@@ -326,7 +329,7 @@ class OMBManagerList(Screen):
 			if name.startswith(_("(Folder")) or name.startswith(_("(Unpack")):
 				return
 			status = self.checkStatusOMB()
-			self.session.openWithCallback(self.confirmNextbootCB, MessageBox,_('Set next boot to %s ?') % name + "\n" + status, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.confirmNextbootCB, MessageBox, _('Set next boot to %s ?') % name + "\n" + status, MessageBox.TYPE_YESNO)
 
 	def confirmNextbootCB(self, ret):
 		if ret:
@@ -337,7 +340,7 @@ class OMBManagerList(Screen):
 			f.write(image)
 			f.close()
 			if not self.session.nav.getRecordings() and self.checkStatusOMB() == _('OMB enabled.'):
-				self.session.openWithCallback(self.confirmRebootCB, MessageBox,_('Do you want to reboot now ?'), MessageBox.TYPE_YESNO, default=False)
+				self.session.openWithCallback(self.confirmRebootCB, MessageBox, _('Do you want to reboot now ?'), MessageBox.TYPE_YESNO, default=False)
 			else:
 				self.refresh()
 
@@ -456,7 +459,7 @@ class OMBManagerList(Screen):
 		if value:
 			file = self.data_dir + '/.timer'
 			if int(value) < 5 or int(value) > 120:
-				self.session.open(MessageBox,_('Incorrect time!'), MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, _('Incorrect time!'), MessageBox.TYPE_INFO)
 			elif int(value) == 5:
 				os.system('rm -rf ' + file)
 			elif int(value) > 5:
@@ -465,7 +468,7 @@ class OMBManagerList(Screen):
 					f.write(value)
 					f.close()
 				except:
-					self.session.open(MessageBox,_('Error set new timeout!'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _('Error set new timeout!'), MessageBox.TYPE_INFO)
 
 	def keyExtra(self):
 		if self.checktimer.isActive():
@@ -482,7 +485,7 @@ class OMBManagerList(Screen):
 							mount_text = "2"
 						elif 'mmcblk0p9' in mount_text:
 							mount_text = "3"
-						self.session.open(MessageBox,_("For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s") % mount_text, MessageBox.TYPE_INFO)
+						self.session.open(MessageBox, _("For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s") % mount_text, MessageBox.TYPE_INFO)
 						return
 				else:
 					if 'mmcblk0p3' not in mount_part:
@@ -493,7 +496,7 @@ class OMBManagerList(Screen):
 							mount_text = "3"
 						elif 'mmcblk0p9' in mount_text:
 							mount_text = "4"
-						self.session.open(MessageBox,_("For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s") % mount_text, MessageBox.TYPE_INFO)
+						self.session.open(MessageBox, _("For this reciever need only first partition muliboot image for use 'openMultiboot'!\nCurrent partition muliboot image - %s") % mount_text, MessageBox.TYPE_INFO)
 						return
 			if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/.autoscan'):
 				menu.append((_("Enable autoscan zip archive at mount device"), "enablescan"))
@@ -519,10 +522,11 @@ class OMBManagerList(Screen):
 			menu.append((_("Alternative name image folder") + ": %s" % config.plugins.omb.alternative_image_folder.value, "folder"))
 		if not self.checkMountFix():
 			menu.append((_("Fix mount devices (for PLi)"), "fix_mount"))
+
 		def extraAction(choice):
 			if choice:
 				if choice[1] == "readme":
-					self.session.open(Console,_("Readme"),["cat /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/readme"])
+					self.session.open(Console, _("Readme"), ["cat /usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/readme"])
 				elif choice[1] == "bootenable":
 					if os.path.isfile(self.data_dir + '/.bootmenu.lock'):
 						file_entry = self.data_dir + '/.bootmenu.lock'
@@ -544,7 +548,7 @@ class OMBManagerList(Screen):
 					self.refresh()
 				elif choice[1] == "enable":
 					if not self.checkMountFix():
-						self.session.open(MessageBox,_("Fix mount devices (for PLi)") + " !", MessageBox.TYPE_INFO)
+						self.session.open(MessageBox, _("Fix mount devices (for PLi)") + " !", MessageBox.TYPE_INFO)
 						return
 					if os.path.isfile('/sbin/open_multiboot'):
 						os.system('rm /sbin/init')
@@ -561,7 +565,7 @@ class OMBManagerList(Screen):
 							print line.rstrip()
 					if self.checkMountFix():
 						if not self.session.nav.getRecordings() and self.checkStatusOMB() == _('OMB enabled.'):
-							self.session.openWithCallback(self.confirmRebootCB, MessageBox,_('Do you want to reboot box now ?'), MessageBox.TYPE_YESNO, default=False)
+							self.session.openWithCallback(self.confirmRebootCB, MessageBox, _('Do you want to reboot box now ?'), MessageBox.TYPE_YESNO, default=False)
 				elif choice[1] == "enablescan":
 					self.setAutoScan(choice[1])
 				elif choice[1] == "disablescan":
@@ -573,7 +577,7 @@ class OMBManagerList(Screen):
 					text = _("Install")
 					self.session.open(Console, text, [cmd])
 				elif choice[1] == "folder":
-					self.session.openWithCallback(self.renameFolderCallback, VirtualKeyBoard, title = _("Please enter new name:"), text=config.plugins.omb.alternative_image_folder.value)
+					self.session.openWithCallback(self.renameFolderCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=config.plugins.omb.alternative_image_folder.value)
 		dlg = self.session.openWithCallback(extraAction, ChoiceBox, title=text, list=menu)
 		dlg.setTitle(_("Open MultiBoot Menu"))
 
@@ -586,7 +590,7 @@ class OMBManagerList(Screen):
 	def deleteAnswer(self, answer):
 		if answer:
 			os.system('rm -rf ' + self.data_dir)
-			self.waitmessagebox = self.session.open(MessageBox,_('Please wait 40 seconds, while delete is in progress.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.waitmessagebox = self.session.open(MessageBox, _('Please wait 40 seconds, while delete is in progress.'), MessageBox.TYPE_INFO, enable_input=False)
 			self.waittimer = eTimer()
 			self.waittimer.callback.append(self.deleteFolder)
 			self.waittimer.start(40000, True)
@@ -616,7 +620,7 @@ class OMBManagerList(Screen):
 		if self["list"].getIndex() == 0:
 			if name.endswith('(Flash)'):
 				name = name[:-8]
-		self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title = _("Please enter new name:"), text=name)
+		self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
 
 	def renameEntryCallback(self, name):
 		if name:
@@ -632,7 +636,7 @@ class OMBManagerList(Screen):
 
 	def deleteConfirm(self, confirmed):
 		if confirmed and len(self.entry_to_delete['path']) > 1:
-			self.messagebox = self.session.open(MessageBox,_('Please wait while delete is in progress.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.messagebox = self.session.open(MessageBox, _('Please wait while delete is in progress.'), MessageBox.TYPE_INFO, enable_input=False)
 			self.timer = eTimer()
 			self.timer.callback.append(self.deleteImage)
 			self.timer.start(500)
@@ -683,7 +687,7 @@ class OMBManagerList(Screen):
 		if len(upload_list) > 0:
 			self.session.openWithCallback(self.afterInstall, OMBManagerInstall, self.mount_point, upload_list)
 		else:
-			self.session.open(MessageBox, _("Please upload an image inside %s") % self.upload_dir, type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Please upload an image inside %s") % self.upload_dir, type=MessageBox.TYPE_ERROR)
 
 	def ombImageMountFix(self, file):
 		fix = False

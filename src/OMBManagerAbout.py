@@ -29,11 +29,12 @@ from Components.Label import Label
 from OMBManagerCommon import OMB_DATA_DIR, OMB_UPLOAD_DIR, OMB_TMP_DIR, OMB_MANAGER_VERION
 from OMBManagerInstall import BOX_NAME
 from OMBManagerLocale import _
-from enigma  import getDesktop
+from enigma import getDesktop
 try:
 	screenWidth = getDesktop(0).size().width()
 except:
 	screenWidth = 720
+
 
 class OMBManagerAbout(Screen):
 	if screenWidth >= 1920:
@@ -49,7 +50,7 @@ class OMBManagerAbout(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		self.setTitle(_('openMultiboot About'))
 
 		about = "openMultiboot Manager " + OMB_MANAGER_VERION + "\n"
