@@ -20,6 +20,7 @@
 #
 #############################################################################
 
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 
@@ -652,14 +653,14 @@ class OMBManagerInstall(Screen):
 		nfidata = open(nfifile, 'r')
 		header = nfidata.read(32)
 		if header[:3] != 'NFI':
-			print '[OMB] Sorry, old NFI format deteced'
+			print('[OMB] Sorry, old NFI format deteced')
 			nfidata.close()
 			return False
 		else:
 			machine_type = header[4:4 + header[4:].find('\0')]
 			if header[:4] == 'NFI3':
 				machine_type = 'dm7020hdv2'
-		print '[OMB] Dreambox image type: %s' % machine_type
+		print('[OMB] Dreambox image type: %s' % machine_type)
 		if machine_type == 'dm800' or machine_type == 'dm500hd' or machine_type == 'dm800se':
 			self.esize = '0x4000,0x200'
 			self.vid_offset = '512'
@@ -683,17 +684,17 @@ class OMBManagerInstall(Screen):
 			bs = 2048
 			bso = 2112
 		(total_size, ) = struct.unpack('!L', nfidata.read(4))
-		print '[OMB] Total image size: %s Bytes' % total_size
+		print('[OMB] Total image size: %s Bytes' % total_size)
 		part = 0
 		while nfidata.tell() < total_size:
 			(size, ) = struct.unpack('!L', nfidata.read(4))
-			print '[OMB] Processing partition # %d size %d Bytes' % (part, size)
+			print('[OMB] Processing partition # %d size %d Bytes' % (part, size))
 			output_names = {2: 'kernel.bin', 3: 'rootfs.bin'}
 			if part not in output_names:
 				nfidata.seek(size, 1)
-				print '[OMB] Skipping %d data...' % size
+				print('[OMB] Skipping %d data...' % size)
 			else:
-				print '[OMB] Extracting %s with %d blocksize...' % (output_names[part], bs)
+				print('[OMB] Extracting %s with %d blocksize...' % (output_names[part], bs))
 				output_filename = extractdir + '/' + output_names[part]
 				if os.path.exists(output_filename):
 					os.remove(output_filename)
@@ -707,7 +708,7 @@ class OMBManagerInstall(Screen):
 				output.close()
 			part = part + 1
 		nfidata.close()
-		print '[OMB] Extracting %s to %s Finished!' % (nfifile, extractdir)
+		print('[OMB] Extracting %s to %s Finished!' % (nfifile, extractdir))
 		return True
 
 	def afterInstallImage(self, dst_path=""):
@@ -743,6 +744,6 @@ class OMBManagerInstall(Screen):
 			if not fix and not error:
 				for line in fileinput.input(file, inplace=True):
 					if 'mount -t tmpfs -o size=64k tmpfs /media' in line:
-						print "mountpoint -q \"/media\" || mount -t tmpfs -o size=64k tmpfs /media"
+						print("mountpoint -q \"/media\" || mount -t tmpfs -o size=64k tmpfs /media")
 					else:
-						print line.rstrip()
+						print(line.rstrip())

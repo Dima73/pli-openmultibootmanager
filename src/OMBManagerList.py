@@ -20,6 +20,7 @@
 #
 #############################################################################
 
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -335,7 +336,7 @@ class OMBManagerList(Screen):
 	def confirmNextbootCB(self, ret):
 		if ret:
 			image = self.images_entries[self.select]['identifier']
-			print "[OMB] set nextboot to %s" % image
+			print("[OMB] set nextboot to %s" % image)
 			file_entry = self.data_dir + '/.nextboot'
 			f = open(file_entry, 'w')
 			f.write(image)
@@ -561,9 +562,9 @@ class OMBManagerList(Screen):
 				elif choice[1] == "fix_mount":
 					for line in fileinput.input('/etc/init.d/volatile-media.sh', inplace=True):
 						if 'mount -t tmpfs -o size=64k tmpfs /media' in line:
-							print "mountpoint -q \"/media\" || mount -t tmpfs -o size=64k tmpfs /media"
+							print("mountpoint -q \"/media\" || mount -t tmpfs -o size=64k tmpfs /media")
 						else:
-							print line.rstrip()
+							print(line.rstrip())
 					if self.checkMountFix():
 						if not self.session.nav.getRecordings() and self.checkStatusOMB() == _('OMB enabled.'):
 							self.session.openWithCallback(self.confirmRebootCB, MessageBox, _('Do you want to reboot box now ?'), MessageBox.TYPE_YESNO, default=False)
@@ -705,9 +706,9 @@ class OMBManagerList(Screen):
 		if not fix and not error:
 			for line in fileinput.input(file, inplace=True):
 				if 'mount -t tmpfs -o size=64k tmpfs /media' in line:
-					print "mountpoint -q \"/media\" || mount -t tmpfs -o size=64k tmpfs /media"
+					print("mountpoint -q \"/media\" || mount -t tmpfs -o size=64k tmpfs /media")
 				else:
-					print line.rstrip()
+					print(line.rstrip())
 
 	def afterInstall(self, file=None):
 		if file is not None:
