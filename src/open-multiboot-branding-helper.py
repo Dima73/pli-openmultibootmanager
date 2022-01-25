@@ -20,6 +20,7 @@
 #
 #############################################################################
 
+from __future__ import print_function
 import sys
 
 KEYS_FNC_MAP = {
@@ -46,13 +47,13 @@ KEYS_FNC_MAP = {
 
 
 def print_help():
-	print 'Syntax:'
-	print sys.argv[0] + ' enigma2_dir key'
-	print ''
-	print 'Valid keys:'
+	print('Syntax:')
+	print(sys.argv[0] + ' enigma2_dir key')
+	print('')
+	print('Valid keys:')
 	for key in KEYS_FNC_MAP.keys():
-		print ' * ' + key
-	print ' * all'
+		print(' * ' + key)
+	print(' * all')
 
 
 if len(sys.argv) != 3:
@@ -69,27 +70,27 @@ else:
 	else:
 		if sys.argv[2] == 'all':
 			for key in KEYS_FNC_MAP.keys():
-				print key + ' = ' + eval(KEYS_FNC_MAP[key])
+				print(key + ' = ' + eval(KEYS_FNC_MAP[key]))
 		else:
 			if WORKAROUND or (sys.argv[2] == 'image_distro' or sys.argv[2] == 'image_version'):
 				if sys.argv[2] == 'image_distro':
 					try:
-						print open(sys.argv[1].replace("/usr/lib/enigma2/python", "") + "/etc/issue").readlines()[-2].capitalize().strip()[:-6]
+						print(open(sys.argv[1].replace("/usr/lib/enigma2/python", "") + "/etc/issue").readlines()[-2].capitalize().strip()[:-6])
 					except:
-						print "undefined"
+						print("undefined")
 				elif sys.argv[2] == 'image_version':
 					print " "
 				elif sys.argv[2] == 'brand_oem':
 					try:
-						print open(sys.argv[1].replace("/usr/lib/enigma2/python", "") + "/etc/.brand_oem").readline().strip()
+						print(open(sys.argv[1].replace("/usr/lib/enigma2/python", "") + "/etc/.brand_oem").readline().strip())
 					except:
-						print " "
+						print(" ")
 				elif sys.argv[2] == 'box_type':
 					try:
-						print open(sys.argv[1].replace("/usr/lib/enigma2/python", "") + "/etc/.box_type").readline().strip()
+						print(open(sys.argv[1].replace("/usr/lib/enigma2/python", "") + "/etc/.box_type").readline().strip())
 					except:
-						print " "
+						print(" ")
 				else:
-					print "opps"
+					print("opps")
 			else:
-				print eval(KEYS_FNC_MAP[sys.argv[2]])
+				print(eval(KEYS_FNC_MAP[sys.argv[2]]))
