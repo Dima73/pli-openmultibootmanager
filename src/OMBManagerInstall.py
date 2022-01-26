@@ -32,8 +32,8 @@ from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
 from Screens.ChoiceBox import ChoiceBox
 from Components.config import config
-from OMBManagerCommon import OMB_MAIN_DIR, OMB_DATA_DIR, OMB_UPLOAD_DIR, OMB_TMP_DIR
-from OMBManagerLocale import _
+from Plugins.Extensions.OpenMultiboot.OMBManagerCommon import OMB_MAIN_DIR, OMB_DATA_DIR, OMB_UPLOAD_DIR, OMB_TMP_DIR
+from Plugins.Extensions.OpenMultiboot.OMBManagerLocale import _
 from enigma import eTimer, getDesktop
 import os
 import glob

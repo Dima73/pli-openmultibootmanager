@@ -36,11 +36,11 @@ from Components.config import config, ConfigSubsection, ConfigText
 from Components.Input import Input
 from Screens.InputBox import InputBox
 from Components.config import config
-from OMBManagerInstall import OMBManagerInstall, OMB_RM_BIN, BRANDING, BOX_NAME, BOX_MODEL, OMB_GETIMAGEFOLDER, box
-from OMBManagerAbout import OMBManagerAbout
-from OMBManagerCommon import OMB_DATA_DIR, OMB_UPLOAD_DIR
+from Plugins.Extensions.OpenMultiboot.OMBManagerInstall import OMBManagerInstall, OMB_RM_BIN, BRANDING, BOX_NAME, BOX_MODEL, OMB_GETIMAGEFOLDER, box
+from Plugins.Extensions.OpenMultiboot.OMBManagerAbout import OMBManagerAbout
+from Plugins.Extensions.OpenMultiboot.OMBManagerCommon import OMB_DATA_DIR, OMB_UPLOAD_DIR
 from Components.Label import Label
-from OMBManagerLocale import _
+from Plugins.Extensions.OpenMultiboot.OMBManagerLocale import _
 from enigma import eTimer, getDesktop
 import os
 import fileinput

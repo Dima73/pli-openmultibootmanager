@@ -19,10 +19,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 #############################################################################
-from OMBManagerLocale import _
+from Plugins.Extensions.OpenMultiboot.OMBManagerLocale import _
 from Plugins.Plugin import PluginDescriptor
-from OMBManager import OMBManager, isMounted
-from OMBManagerCommon import OMB_MAIN_DIR, OMB_DATA_DIR, OMB_UPLOAD_DIR
+from Plugins.Extensions.OpenMultiboot.OMBManager import OMBManager, isMounted
+from Plugins.Extensions.OpenMultiboot.OMBManagerCommon import OMB_MAIN_DIR, OMB_DATA_DIR, OMB_UPLOAD_DIR
 from Components.Harddisk import harddiskmanager
 import os
 from Tools.BoundFunction import boundFunction

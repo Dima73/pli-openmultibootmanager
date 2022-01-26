@@ -23,10 +23,10 @@
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
-from OMBManagerList import OMBManagerList
-from OMBManagerCommon import OMB_MAIN_DIR, OMB_DATA_DIR, OMB_UPLOAD_DIR
-from OMBManagerInstall import OMB_GETIMAGEFILESYSTEM, OMB_UNJFFS2_BIN, BOX_MODEL, BOX_NAME, BRANDING, OMB_NFIDUMP_BIN
-from OMBManagerLocale import _
+from Plugins.Extensions.OpenMultiboot.OMBManagerList import OMBManagerList
+from Plugins.Extensions.OpenMultiboot.OMBManagerCommon import OMB_MAIN_DIR, OMB_DATA_DIR, OMB_UPLOAD_DIR
+from Plugins.Extensions.OpenMultiboot.OMBManagerInstall import OMB_GETIMAGEFILESYSTEM, OMB_UNJFFS2_BIN, BOX_MODEL, BOX_NAME, BRANDING, OMB_NFIDUMP_BIN
+from Plugins.Extensions.OpenMultiboot.OMBManagerLocale import _
 from enigma import eTimer
 import os
 

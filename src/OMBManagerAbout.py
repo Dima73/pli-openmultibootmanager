@@ -26,9 +26,9 @@ from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 
-from OMBManagerCommon import OMB_DATA_DIR, OMB_UPLOAD_DIR, OMB_TMP_DIR, OMB_MANAGER_VERION
-from OMBManagerInstall import BOX_NAME
-from OMBManagerLocale import _
+from Plugins.Extensions.OpenMultiboot.OMBManagerCommon import OMB_DATA_DIR, OMB_UPLOAD_DIR, OMB_TMP_DIR, OMB_MANAGER_VERION
+from Plugins.Extensions.OpenMultiboot.OMBManagerInstall import BOX_NAME
+from Plugins.Extensions.OpenMultiboot.OMBManagerLocale import _
 from enigma import getDesktop
 try:
 	screenWidth = getDesktop(0).size().width()
