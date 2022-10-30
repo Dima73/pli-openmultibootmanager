@@ -61,17 +61,17 @@ def ismultibootFile():
 		if 'mips' in arch:
 			MIPS = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/bin/mips/open_multiboot"
 			if os.path.isfile(MIPS):
-				os.chmod(MIPS, 0755)
+				os.chmod(MIPS, 0o755)
 				os.system("cp %s /sbin/open_multiboot" % MIPS)
 		elif 'armv7l' in arch:
 			ARMV71 = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/bin/armv7l/open_multiboot"
 			if os.path.isfile(ARMV71):
-				os.chmod(ARMV71, 0755)
+				os.chmod(ARMV71, 0o755)
 				os.system("cp %s /sbin/open_multiboot" % ARMV71)
 		elif 'sh4' in arch:
 			SH4 = "/usr/lib/enigma2/python/Plugins/Extensions/OpenMultiboot/bin/sh4/open_multiboot"
 			if os.path.isfile(SH4):
-				os.chmod(SH4, 0755)
+				os.chmod(SH4, 0o755)
 				os.system("cp %s /sbin/open_multiboot" % SH4)
 		if os.path.isfile(multiboot_bin):
 			return True
