@@ -79,7 +79,7 @@ else:
 					except:
 						print("undefined")
 				elif sys.argv[2] == 'image_version':
-					print " "
+					print(" ")
 				elif sys.argv[2] == 'brand_oem':
 					try:
 						print(open(sys.argv[1].replace("/usr/lib/enigma2/python", "") + "/etc/.brand_oem").readline().strip())
